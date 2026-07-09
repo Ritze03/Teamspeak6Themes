@@ -51,6 +51,9 @@ the same compact server tree as Graphite.
 - The themes are designed for the **"Compact"** setting under
   **Settings → Appearance → Tree Style**, but they also work with
   "Detailed".
+- **Restart TeamSpeak after activating or switching a theme** — the channel
+  tree view only updates its sizing properly after a restart. Until then
+  the channel list may look squished or oddly spaced.
 - Updating: replace the two folders with new versions, then press the
   refresh icon (or restart TeamSpeak).
 - Uninstalling: delete the folders from the extensions folder.

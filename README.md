@@ -44,7 +44,9 @@ the same compact server tree as Graphite.
    folder. You can also install just one of them.
 6. Back in TeamSpeak, click the small **refresh icon** (circular arrow) next
    to the folder icon — the new themes appear as cards.
-7. Click the theme you like. Done!
+7. Click the theme you like.
+8. **Restart TeamSpeak** — the channel tree only applies its sizing
+   properly after a restart. Done!
 
 ## Good to know
 

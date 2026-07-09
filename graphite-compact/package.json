@@ -1,0 +1,62 @@
+{
+  "name": "Graphite",
+  "description": "Compact dark gray theme with vanilla TeamSpeak accents",
+  "version": "1.0.0",
+  "identifier": "de.wurst.graphite",
+  "engines": {
+    "teamspeak": 1
+  },
+  "repository": {
+    "url": "https://github.com/",
+    "type": "git",
+    "directory": ""
+  },
+  "image": "Thumbnail.png",
+  "license": "MIT",
+  "author": {
+    "name": "Wurster"
+  },
+  "community": {
+    "room": "#extensions:chat.teamspeak.com"
+  },
+  "content": {
+    "themes": [
+      {
+        "name": "Compact - Vanilla",
+        "source": "Vanilla.css",
+        "apiVersion": 1,
+        "image": "Vanilla.png"
+      },
+      {
+        "name": "Compact - Monochrome",
+        "source": "Monochrome.css",
+        "apiVersion": 1,
+        "image": "Monochrome.png"
+      },
+      {
+        "name": "Compact - Amoled",
+        "source": "Amoled.css",
+        "apiVersion": 1,
+        "image": "Amoled.png"
+      },
+      {
+        "name": "Compact NoScroll - Vanilla",
+        "source": "NoScrollVanilla.css",
+        "apiVersion": 1,
+        "image": "NoScrollVanilla.png"
+      },
+      {
+        "name": "Compact NoScroll - Monochrome",
+        "source": "NoScrollMonochrome.css",
+        "apiVersion": 1,
+        "image": "NoScrollMonochrome.png"
+      },
+      {
+        "name": "Compact NoScroll - Amoled",
+        "source": "NoScrollAmoled.css",
+        "apiVersion": 1,
+        "image": "NoScrollAmoled.png"
+      }
+    ]
+  }
+}

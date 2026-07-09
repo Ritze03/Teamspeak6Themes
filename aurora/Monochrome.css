@@ -1,0 +1,44 @@
+/* Aurora - Monochrome: silver ambient glow, gray UI chrome.
+   Voice indicators stay vanilla blue (same convention as Graphite). */
+@import url(AuroraBase.css?v=12);
+
+:root,
+::after,
+::before {
+    --au-accent: #b0b0b0;
+    --au-accent-strong: #8f8f8f;
+    --au-link: #c8c8c8;
+    --au-self-bg: rgba(255, 255, 255, 0.12);
+    --au-orb-1: rgba(255, 255, 255, 0.10);
+    --au-orb-2: rgba(255, 255, 255, 0.06);
+    --au-orb-3: rgba(255, 255, 255, 0.05);
+    --au-orb-4: rgba(255, 255, 255, 0.04);
+
+    /* Neutralize the violet-tinted canvas and glass surfaces */
+    --au-canvas: #0c0c0e;
+    --au-glass-strong: rgba(20, 20, 24, 0.8);
+    --fb-bg-deep: rgba(8, 8, 10, 0.85);
+    --fb-bg-contrast: rgba(10, 10, 12, 0.72);
+    --fb-bg-window: rgba(14, 14, 17, 0.55);
+    --fb-bg-header: rgba(17, 17, 20, 0.55);
+    --fb-bg-flat: rgba(19, 19, 23, 0.45);
+    --fb-bg: rgba(23, 23, 27, 0.5);
+    --fb-text: #e6e6e9;
+    --fb-text-sub: #9a9aa2;
+    --fb-menu-bg: rgba(22, 22, 26, 0.78);
+
+    /* UI icons go gray, but the voice indicator keeps its vanilla blue
+       (ring and fill) */
+    --tsv-client-talking--outline: #0353F4 !important;
+    --tsv-client-silent--outline: #0353F4 !important;
+    --tsv-client-talking--gradient-start: rgb(3, 90, 246) !important;
+    --tsv-client-talking--gradient-stop: rgba(17, 99, 197) !important;
+    --tsv-client-silent--gradient-start: rgb(3, 90, 246) !important;
+    --tsv-client-silent--gradient-stop: rgba(17, 99, 197) !important;
+}
+
+/* Links keep an underline so they stay recognizable without color */
+.ts-parsed-text-content a,
+.ts-chat-message-content a {
+    text-decoration: underline !important;
+}

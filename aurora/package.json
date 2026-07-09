@@ -1,0 +1,74 @@
+{
+  "name": "Aurora",
+  "description": "Dark glassmorphism: ambient aurora orbs behind frosted panes, compact tree",
+  "version": "1.0.0",
+  "identifier": "de.wurst.aurora",
+  "engines": {
+    "teamspeak": 1
+  },
+  "repository": {
+    "url": "https://github.com/",
+    "type": "git",
+    "directory": ""
+  },
+  "image": "Thumbnail.png",
+  "license": "MIT",
+  "author": {
+    "name": "Wurster"
+  },
+  "community": {
+    "room": "#extensions:chat.teamspeak.com"
+  },
+  "content": {
+    "themes": [
+      {
+        "name": "Aurora - Violet",
+        "source": "Violet.css",
+        "apiVersion": 1,
+        "image": "Violet.png"
+      },
+      {
+        "name": "Aurora - Blue",
+        "source": "Blue.css",
+        "apiVersion": 1,
+        "image": "Blue.png"
+      },
+      {
+        "name": "Aurora - Green",
+        "source": "Green.css",
+        "apiVersion": 1,
+        "image": "Green.png"
+      },
+      {
+        "name": "Aurora - Monochrome",
+        "source": "Monochrome.css",
+        "apiVersion": 1,
+        "image": "Monochrome.png"
+      },
+      {
+        "name": "Aurora NoScroll - Violet",
+        "source": "NoScrollViolet.css",
+        "apiVersion": 1,
+        "image": "NoScrollViolet.png"
+      },
+      {
+        "name": "Aurora NoScroll - Blue",
+        "source": "NoScrollBlue.css",
+        "apiVersion": 1,
+        "image": "NoScrollBlue.png"
+      },
+      {
+        "name": "Aurora NoScroll - Green",
+        "source": "NoScrollGreen.css",
+        "apiVersion": 1,
+        "image": "NoScrollGreen.png"
+      },
+      {
+        "name": "Aurora NoScroll - Monochrome",
+        "source": "NoScrollMonochrome.css",
+        "apiVersion": 1,
+        "image": "NoScrollMonochrome.png"
+      }
+    ]
+  }
+}

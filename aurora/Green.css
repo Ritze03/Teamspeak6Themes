@@ -1,0 +1,28 @@
+/* Aurora - Green: emerald / teal northern lights. */
+@import url(AuroraBase.css?v=12);
+
+:root,
+::after,
+::before {
+    --au-accent: #34d399;
+    --au-accent-strong: #0ea371;
+    --au-link: #6ee7b7;
+    --au-self-bg: rgba(52, 211, 153, 0.16);
+    --au-orb-1: rgba(16, 185, 129, 0.26);
+    --au-orb-2: rgba(45, 212, 191, 0.16);
+    --au-orb-3: rgba(132, 204, 22, 0.10);
+    --au-orb-4: rgba(34, 197, 94, 0.10);
+
+    /* Green-tinted canvas and glass surfaces (base defaults are violet) */
+    --au-canvas: #08120c;
+    --au-glass-strong: rgba(15, 36, 22, 0.8);
+    --fb-bg-deep: rgba(4, 12, 7, 0.85);
+    --fb-bg-contrast: rgba(7, 16, 10, 0.72);
+    --fb-bg-window: rgba(10, 22, 14, 0.55);
+    --fb-bg-header: rgba(12, 28, 17, 0.55);
+    --fb-bg-flat: rgba(14, 30, 19, 0.45);
+    --fb-bg: rgba(17, 36, 23, 0.5);
+    --fb-text: #e9f7ed;
+    --fb-text-sub: #93b8a0;
+    --fb-menu-bg: rgba(15, 36, 22, 0.78);
+}

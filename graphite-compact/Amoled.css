@@ -1,0 +1,111 @@
+/*
+   Graphite "Compact - Amoled": pitch-black backgrounds (OLED), vanilla
+   TeamSpeak accents like the Vanilla sub-theme. Panes stay distinguishable
+   through dark-gray separator lines and slightly raised floating surfaces
+   (menus, cards, bubbles).
+*/
+@import url(GraphiteBase.css?v=15);
+
+:root,
+::after,
+::before {
+    /* --- Collapse the gray ladder to black --- */
+    --gc-bg-deep: #000000 !important;
+    --gc-bg-contrast: #000000 !important;
+    --gc-bg-window: #000000 !important;
+    --gc-bg-header: #000000 !important;
+    --gc-bg-flat: #000000 !important;
+    --gc-bg: #000000 !important;
+    --gc-bg-raised: #000000 !important;
+    --gc-bg-hover: #222222 !important;
+
+    /* Separators carry the pane structure on black */
+    --gc-border: #2e2e2e !important;
+    --gc-border-strong: #3a3a3a !important;
+
+    /* --- Re-pin the base's literal grays --- */
+    --tsv-contrast-strong-bg: #000000 !important;
+    --ts-new-header-bg: #000000 !important;
+    --strong-bg: #000000 !important;
+    --card-background: #101010 !important;
+    --card-hover-background: #1a1a1a !important;
+    --tsv-main-bg-gradient-end: #000000 !important;
+    --tsv-servertree-bg-gradient: none !important;
+    --tsv-server-header-gradient-end: #000000 !important;
+    --tsv-view-header-gradient-start: #000000 !important;
+    --tsv-view-header-bg: #000000 !important;
+    --tsv-separation-border-strong-color: #2e2e2e !important;
+    --presence-separator-presence: #2e2e2e !important;
+    --tsv-homebase-transparent-bg: rgba(0, 0, 0, 0.7) !important;
+    --tsv-content-branding-fancy-gradient-start: #141414 !important;
+    --tsv-content-branding-fancy-gradient-end: #000000 !important;
+    --tsv-content-branding-pinned-bg: radial-gradient(circle, #141414 0%, #000000 100%) !important;
+
+    /* Floating / elevated surfaces stay slightly above black */
+    --ts-context-menu-background: rgba(10, 10, 10, 0.95) !important;
+    --ts-menu-action-background: #141414 !important;
+    --ts-tree-badges-bg: #141414 !important;
+    --ts-chat-system-message-bg: #101010 !important;
+
+    /* Chat scrollbar thumb: visible gray on black (base maps it to the
+       window bg, which is pure black here) */
+    --tsv-scrollbar-bg: #3a3a3a !important;
+
+    /* Chat bubbles readable on pure black */
+    --tsv-chat-remote-bg: #161616 !important;
+    --tsv-chat-remote-font-color: #e6e6e6 !important;
+    --tsv-chat-self-bg: #202020 !important;
+    --tsv-chat-self-bg-pending: #1a1a1a !important;
+    --tsv-chat-self-bg-transparent: rgba(32, 32, 32, 0.7) !important;
+    --tsv-chat-deleted-bg: #241616 !important;
+}
+
+/* Channel name header: black like the rest, separated by a line */
+.tsv-bar.tsv-content-header-bar.tsv-header-bar-below-tools {
+    background: #000000 !important;
+    border-bottom: 1px solid #2e2e2e !important;
+}
+
+/* Pane separators: black-on-black panes need explicit lines */
+.tsv-sidebar {
+    border-right: 1px solid #2e2e2e !important;
+}
+
+.tsv-activity-primary,
+.tsv-activity-detail {
+    border-left: 1px solid #2e2e2e !important;
+}
+
+/* Drawn as an ::after overshooting left so the line meets the vertical
+   rail separator. This replaces the stock ::after on the middle pane's
+   window bar (a rounded-corner filler that interrupted the line), so all
+   props are pinned with !important — square corners fit AMOLED anyway. */
+.tsv-bar.tsv-window-bar {
+    position: relative !important;
+}
+
+.tsv-bar.tsv-window-bar::after {
+    content: "" !important;
+    position: absolute !important;
+    left: -12px !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    width: auto !important;
+    height: 1px !important;
+    background: #2e2e2e !important;
+    transform: none !important;
+    mask: none !important;
+    -webkit-mask: none !important;
+    z-index: 3 !important;
+    pointer-events: none !important;
+}
+
+/* Chat scrollbar: chunks flash the vanilla-blue tint on hover — keep gray */
+.ts-chunk-scroll-track > .ts-chunk-scroll-track__chunks > .ts-chunk-scroll-track__chunks__chunk.is-hovering {
+    background-color: #6a6a6a !important;
+}
+
+.ts-chat-input-container {
+    border-color: #2e2e2e !important;
+}

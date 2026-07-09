@@ -1,0 +1,21 @@
+/*
+   NoScroll module (not a theme): hides the scrollbars of the channel
+   tree and the chat view. Scrolling itself keeps working; scrollbars
+   elsewhere (settings, menus, ...) are untouched.
+*/
+
+/* Channel tree */
+.ts-server-tree-scroller::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Chat view: custom chunk track + any native scrollbars inside */
+.ts-chat-container .ts-chunk-scroll-track {
+    display: none !important;
+}
+
+.ts-chat-container ::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+}

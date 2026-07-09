@@ -1,0 +1,135 @@
+/*
+   Aurora — standalone TeamSpeak 6 theme (shared base, not a theme).
+   Dark glassmorphism: ambient orbs behind translucent frosted panes,
+   compact Graphite sizing (26px tree rows).
+
+   Color variants set the --au-* knobs (defaults below = Violet):
+     --au-accent / --au-accent-strong    UI accent & buttons
+     --au-link                           chat links
+     --au-self-bg                        own chat bubble tint
+     --au-orb-1..4                       the four ambient orb colors
+*/
+@import url(FableCore.css?v=2);
+
+:root,
+::after,
+::before {
+    /* --- Variant knobs (Violet defaults) --- */
+    --au-accent: #a78bfa;
+    --au-accent-strong: #7c5cf0;
+    --au-link: #7dd3fc;
+    --au-self-bg: rgba(167, 139, 250, 0.17);
+    --au-orb-1: rgba(124, 58, 237, 0.28);
+    --au-orb-2: rgba(34, 211, 238, 0.16);
+    --au-orb-3: rgba(236, 72, 153, 0.14);
+    --au-orb-4: rgba(59, 130, 246, 0.10);
+    --au-canvas: #0a0814;
+    --au-glass-strong: rgba(20, 15, 36, 0.8);
+
+    /* --- Glass surfaces --- */
+    --fb-bg-deep: rgba(6, 4, 12, 0.85);
+    --fb-bg-contrast: rgba(9, 7, 16, 0.72);
+    --fb-bg-window: rgba(13, 10, 22, 0.55);
+    --fb-bg-header: rgba(16, 12, 28, 0.55);
+    --fb-bg-flat: rgba(18, 14, 30, 0.45);
+    --fb-bg: rgba(22, 17, 36, 0.5);
+    --fb-bg-raised: rgba(255, 255, 255, 0.055);
+    --fb-bg-hover: rgba(255, 255, 255, 0.11);
+    --fb-border: rgba(255, 255, 255, 0.08);
+    --fb-border-strong: rgba(255, 255, 255, 0.16);
+    --fb-text: #ece9f7;
+    --fb-text-sub: #9a93b8;
+    --fb-accent: var(--au-accent);
+    --fb-accent-strong: var(--au-accent-strong);
+    --fb-chat-link: var(--au-link);
+    --fb-chat-remote-bg: rgba(255, 255, 255, 0.07);
+    --fb-chat-remote-fg: #ece9f7;
+    --fb-chat-self-bg: var(--au-self-bg);
+    --fb-chat-self-fg: #ffffff;
+    --fb-menu-bg: rgba(20, 15, 36, 0.78);
+    --fb-scroll-thumb: rgba(255, 255, 255, 0.2);
+    --fb-radius: 12px;
+    --fb-banner-bg: rgba(255, 255, 255, 0.045);
+
+    /* --- Graphite sizing: 28px rows, 22px icons, 26px pill, 2px gaps --- */
+    --fb-tree-row: 28px;
+    --ts-tree-spacer-height-default: 20px !important;
+}
+
+.ts-server-tree-item-leaf .ts-server-tree-item-text {
+    font-size: 13px !important;
+}
+
+/* Tree icons (channel icons, voice circles, avatars) at 22px so they sit
+   inside the 26px row pill — everything derives from --tsv-icon-size */
+.ts-server-tree-wrapper,
+.ts-server-tree-scroller {
+    --tsv-icon-size: 22px !important;
+}
+
+/* Row pills: constant geometry in EVERY state. The client shrinks all four
+   insets by 3px on hover/active/selected (animated), which makes channels
+   grow — pin the insets so states only toggle the outline, and keep just
+   the opacity fade of the geometry transition */
+.ts-server-tree-item-leaf .ts-server-tree-item-background-image,
+.ts-server-tree-item-leaf .ts-server-tree-item-background-image-full,
+.ts-server-tree-item-leaf .ts-server-tree-item-background-no-image,
+.ts-server-tree-item-leaf .tsv-item-highlight,
+.ts-server-tree-item-leaf .tsv-item-highlight-extra {
+    top: 1px !important;
+    bottom: 1px !important;
+    left: var(--tsv-padding-h-small) !important;
+    right: var(--tsv-padding-h-small) !important;
+    transition: opacity 0.15s ease-out !important;
+}
+
+/* The banner image also slides 3px on hover/active — pin it */
+.ts-server-tree-item-leaf .ts-server-tree-item-background-image__img {
+    margin-left: var(--margin-left) !important;
+}
+
+/* Tree rows must never change size on hover: no icon zoom, no banner
+   slide/scale — hover may only toggle the outline/highlight */
+.ts-server-tree-item-leaf .tsv-magnify:not(svg),
+.ts-server-tree-item-leaf .tsv-magnify > *,
+.ts-server-tree-item-leaf .tsv-server-tree-icon,
+.ts-server-tree-item-leaf .tsv-item-icon-stack {
+    transform: none !important;
+    transition: none !important;
+}
+
+.ts-server-tree-item-leaf .ts-server-tree-item-background-image__img {
+    transition: none !important;
+}
+
+/* The aurora: ambient color orbs behind every pane */
+.tsv-window {
+    background:
+        radial-gradient(55vw 38vh at 12% 8%, var(--au-orb-1), transparent 65%),
+        radial-gradient(45vw 32vh at 88% 15%, var(--au-orb-2), transparent 65%),
+        radial-gradient(60vw 45vh at 55% 95%, var(--au-orb-3), transparent 65%),
+        radial-gradient(40vw 30vh at 30% 60%, var(--au-orb-4), transparent 60%),
+        var(--au-canvas) !important;
+}
+
+/* Frost the floating layers */
+.ts-context-menu,
+.ts-false-context-menu {
+    backdrop-filter: blur(18px) saturate(1.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.tsv-modal-container {
+    backdrop-filter: blur(24px) saturate(1.3) !important;
+    background: var(--au-glass-strong) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+.tsv-bar.tsv-content-header-bar.tsv-header-bar-below-tools {
+    backdrop-filter: blur(10px) !important;
+}
+
+/* Glass edge on chat bubbles */
+.ts-chat-room-event-bubble {
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+}

@@ -1,0 +1,337 @@
+/*
+   Fablelous — TeamSpeak 6 theme family (core plumbing, not a theme)
+
+   Maps every themable client variable onto the --fb-* palette contract.
+   Each sub-theme imports this and defines its own palette + flourishes:
+
+     --fb-bg-deep / -contrast / -window / -header / -flat / bg / -raised / -hover
+     --fb-border / --fb-border-strong
+     --fb-text / --fb-text-sub
+     --fb-accent / --fb-accent-strong        (tint & icon tint / button colors)
+     --fb-chat-link
+     --fb-chat-remote-bg / -fg,  --fb-chat-self-bg / -fg
+     --fb-menu-bg                            (context menus, may be translucent)
+     --fb-scroll-thumb
+     --fb-radius                             (base corner radius, 0 = square)
+     --fb-tree-row                           (tree row height)
+     --fb-banner-bg                          (channel-name header above chat)
+
+   The client injects its defaults AFTER user styles → all overrides use
+   !important. Theme names in package.json max 30 chars.
+*/
+
+/* ============ Neutral fallback palette (core alone = plain dark) ============ */
+:root,
+::after,
+::before {
+    --fb-bg-deep: #0d0d0f;
+    --fb-bg-contrast: #111114;
+    --fb-bg-window: #151518;
+    --fb-bg-header: #17171b;
+    --fb-bg-flat: #1b1b20;
+    --fb-bg: #1f1f24;
+    --fb-bg-raised: #26262c;
+    --fb-bg-hover: #303038;
+    --fb-border: #2c2c34;
+    --fb-border-strong: #3a3a44;
+    --fb-text: #e0e0e4;
+    --fb-text-sub: #8f8f98;
+    --fb-accent: #7aa2f7;
+    --fb-accent-strong: #5f87e0;
+    --fb-chat-link: #9ec1ff;
+    --fb-chat-remote-bg: #2c2c34;
+    --fb-chat-remote-fg: #e6e6ea;
+    --fb-chat-self-bg: #383842;
+    --fb-chat-self-fg: #ffffff;
+    --fb-menu-bg: rgba(24, 24, 30, 0.94);
+    --fb-scroll-thumb: #45454f;
+    --fb-radius: 6px;
+    --fb-tree-row: 30px;
+    --fb-banner-bg: var(--fb-bg-raised);
+}
+
+/* ============ Variable mapping ============ */
+:root,
+::after,
+::before {
+    /* --- Backgrounds --- */
+    --tsv-bg: var(--fb-bg) !important;
+    --tsv-shaded-bg: var(--fb-bg-raised) !important;
+    --tsv-contrast-bg: var(--fb-bg-contrast) !important;
+    --tsv-contrast-strong-bg: var(--fb-bg-deep) !important;
+    --tsv-header-bg: var(--fb-bg-header) !important;
+    --ts-new-header-bg: var(--fb-bg-window) !important;
+    --tsv-deviant-bg: var(--fb-bg-flat) !important;
+    --tsv-preview-bg: var(--fb-bg-header) !important;
+    --ts-primary-background: var(--fb-bg-window) !important;
+    --ts-primary-background-darker: var(--fb-bg-contrast) !important;
+    --ts-primary-background-darker-op95: var(--fb-bg-contrast) !important;
+    --ts-primary-background-darker2: var(--fb-bg-deep) !important;
+    --ts-sidebar-background: var(--fb-bg-flat) !important;
+    --ts-sidebar-connections-background: var(--fb-bg-flat) !important;
+    --ts-sidebar-search-background: var(--fb-bg-flat) !important;
+    --ts-chat-background-color: var(--fb-bg-flat) !important;
+    --card-background: var(--fb-bg-raised) !important;
+    --card-hover-background: var(--fb-bg-hover) !important;
+    --card-outline: var(--fb-border-strong) !important;
+    --settings-highlight-bg: var(--fb-bg-hover) !important;
+    --strong-bg: var(--fb-bg-contrast) !important;
+    --tsv-side-bar-bg-gradient-bottom: var(--fb-bg-flat) !important;
+    --tsv-dashboard-add-contact-bg: var(--fb-bg-flat) !important;
+    --tsv-slider-track-bg: var(--fb-bg-window) !important;
+    --tsv-homebase-transparent-bg: var(--fb-bg-contrast) !important;
+    --tsv-favorite-stroke: var(--fb-border-strong) !important;
+    --ts-tree-item-hover-bg-color: rgba(255, 255, 255, 0.05) !important;
+
+    /* --- Gradients → flat theme surfaces --- */
+    --tsv-main-bg-gradient-start: var(--fb-bg-window) !important;
+    --tsv-main-bg-gradient-end: var(--fb-bg) !important;
+    --tsv-servertree-bg-gradient: linear-gradient(25deg, var(--fb-bg-window), var(--fb-bg)) !important;
+    --tsv-servertree-blur-tint: var(--fb-bg-contrast) !important;
+    --tsv-server-header-gradient-start: var(--fb-bg-contrast) !important;
+    --tsv-server-header-gradient-end: var(--fb-bg-flat) !important;
+    --tsv-view-header-gradient-start: var(--fb-bg-flat) !important;
+    --tsv-view-header-gradient-end: var(--fb-bg-contrast) !important;
+    --tsv-view-header-bg: linear-gradient(to bottom, var(--fb-bg-flat), var(--fb-bg-contrast)) !important;
+    --ts-sidebar-titlebar-background: linear-gradient(180deg, var(--fb-bg-header), var(--fb-bg-raised)) !important;
+    --ts-content-titlebar-background: linear-gradient(180deg, var(--fb-bg-flat), var(--fb-bg-header)) !important;
+    --tsv-highlight-header-bg: linear-gradient(to bottom, var(--fb-bg-flat), var(--fb-bg-raised)) !important;
+    --tsv-highlight-header-honeycomb-bg: linear-gradient(to bottom, var(--fb-bg-flat), var(--fb-bg-raised)) !important;
+    --tsv-unrelated-activity-header-bg: linear-gradient(to top, var(--fb-bg-header), var(--fb-bg)) !important;
+    --tsv-chat-widget-bg: var(--fb-bg-flat) !important;
+    --tsv-content-branding-fancy-gradient-start: var(--fb-bg-hover) !important;
+    --tsv-content-branding-fancy-gradient-end: var(--fb-bg-flat) !important;
+    --tsv-content-branding-pinned-bg: radial-gradient(circle, var(--fb-bg-hover) 0%, var(--fb-bg-flat) 100%) !important;
+    --tsv-content-branding-servers-bg-gradient-stop-1: var(--fb-bg-header) !important;
+    --tsv-content-branding-servers-bg-gradient-stop-2: var(--fb-bg-raised) !important;
+    --tsv-content-branding-servers-bg-gradient-stop-3: var(--fb-bg-hover) !important;
+    --ts-client-detailed-voiceless-gradient-start: var(--fb-bg-hover) !important;
+    --ts-client-detailed-voiceless-gradient-stop: var(--fb-bg-flat) !important;
+    --ts-client-voiceless-gradient-start: var(--fb-bg-hover) !important;
+    --ts-client-voiceless-gradient-stop: var(--fb-bg-raised) !important;
+
+    /* --- Server tree --- */
+    --ts-tree-channel-bg-start: transparent !important;
+    --ts-tree-channel-bg-end: transparent !important;
+    --spacer-bg-gradient-from: transparent !important;
+    --spacer-bg-gradient-to: transparent !important;
+    --ts-tree-badges-bg: var(--fb-bg-raised) !important;
+
+    /* --- Accent / tint --- */
+    --tsv-tint: var(--fb-accent) !important;
+    --tsv-tint2: var(--fb-accent) !important;
+    --tsv-highlight-color: var(--fb-accent) !important;
+    --tsv-icon-tint: var(--fb-accent-strong) !important;
+    --ts-primary-accent-color: var(--fb-accent) !important;
+    --ts-menu-action-color: var(--fb-accent) !important;
+    --ts-select-arrow-color: var(--fb-accent) !important;
+    --ts-drag-border: var(--fb-accent) !important;
+
+    /* --- Buttons & controls --- */
+    --tsv-button-bg: linear-gradient(60deg, var(--fb-accent-strong), var(--fb-accent)) !important;
+    --tsv-button-filled-bg: linear-gradient(60deg, var(--fb-accent-strong), var(--fb-accent)) !important;
+    --tsv-button-hover-bg: var(--fb-accent) !important;
+    --tsv-button-filled-disabled-bg: linear-gradient(to bottom, var(--fb-bg-raised), var(--fb-bg-hover)) !important;
+    --hero-button-background: linear-gradient(-45deg, var(--fb-accent-strong) 1%, var(--fb-accent) 100%) !important;
+    --hero-button-border: 0.5px solid var(--fb-accent) !important;
+    --ts-toggle-bg-color: var(--fb-bg-hover) !important;
+    --ts-toggle-checked-bg-color: var(--fb-accent-strong) !important;
+    --ts-toggle-checked-pill-color: var(--fb-accent) !important;
+    --tsv-control-handle-active-bg: linear-gradient(to bottom, var(--fb-accent-strong), var(--fb-accent)) !important;
+    --tsv-toggle-bg: var(--fb-bg-window) !important;
+    --ts-checkbox-bg-color: var(--fb-bg-contrast) !important;
+    --ts-select-disabled-bg: var(--fb-bg-raised) !important;
+
+    /* --- Selection --- */
+    --tsv-shaded-bg-selection: var(--fb-bg-hover) !important;
+    --tsv-context-menu-item-selection: var(--fb-bg-hover) !important;
+
+    /* --- Text --- */
+    --tsv-font-color: var(--fb-text) !important;
+    --tsv-item-title-color: var(--fb-text) !important;
+    --tsv-font-subtitle-color: var(--fb-text-sub) !important;
+    --ts-third-font-color: var(--fb-text) !important;
+    --tsv-connection-client-font-color: var(--fb-text) !important;
+    --ts-contact-typing-color: var(--fb-text-sub) !important;
+
+    /* --- Chat --- */
+    --tsv-chat-remote-bg: var(--fb-chat-remote-bg) !important;
+    --tsv-chat-remote-font-color: var(--fb-chat-remote-fg) !important;
+    --tsv-chat-self-bg: var(--fb-chat-self-bg) !important;
+    --tsv-chat-self-font-color: var(--fb-chat-self-fg) !important;
+    --tsv-chat-self-bg-pending: var(--fb-bg-hover) !important;
+    --tsv-chat-self-bg-transparent: var(--fb-chat-self-bg) !important;
+    --tsv-chat-deleted-bg: #3a2828 !important;
+    --ts-chat-system-message-bg: var(--fb-bg-header) !important;
+
+    /* --- Context menus --- */
+    --ts-context-menu-background: var(--fb-menu-bg) !important;
+    --tsv-context-menu-border: 1px solid var(--fb-border-strong) !important;
+    --ts-menu-action-background: var(--fb-bg-raised) !important;
+    --ts-menu-action-background-hover: var(--fb-bg-hover) !important;
+    --ts-menu-action-border: var(--fb-border-strong) !important;
+
+    /* --- Scrollbars --- */
+    --tsv-scrollbar-bg: var(--fb-scroll-thumb) !important;
+    --tsv-scrollbar-chunks--bg-1: var(--fb-border-strong) !important;
+    --tsv-scrollbar-chunks--bg-2: var(--fb-scroll-thumb) !important;
+
+    /* --- Stock dark literals that break light sub-themes --- */
+    --ts-settings-background-action: var(--fb-bg-raised) !important;
+    --tsv-control-handle-bg: linear-gradient(to bottom, var(--fb-bg-hover), var(--fb-bg-raised)) !important;
+    --ts-secondary-sidebar-titlebar-bg-color: var(--fb-bg-header) !important;
+    --tsv-server-info-topic-bg: var(--fb-bg-contrast) !important;
+    --tsv-icon-channel-bg: var(--fb-bg-contrast) !important;
+    --ts-toggle-pill-color: var(--fb-text-sub) !important;
+
+    /* Voice indicator fill follows the accent (outline already does) */
+    --tsv-client-talking--gradient-start: var(--fb-accent) !important;
+    --tsv-client-talking--gradient-stop: var(--fb-accent-strong) !important;
+    --tsv-client-silent--gradient-start: var(--fb-accent) !important;
+    --tsv-client-silent--gradient-stop: var(--fb-accent-strong) !important;
+
+    /* --- Separators & borders --- */
+    --tsv-separation-border-color: var(--fb-border) !important;
+    --tsv-separation-border-strong-color: var(--fb-border-strong) !important;
+    --ts-panel-separator-color: var(--fb-bg-contrast) !important;
+    --presence-separator-presence: var(--fb-border) !important;
+    --tsv-unrelated-activity-seperator-color: var(--fb-bg-header) !important;
+
+    /* --- Corner radius scale --- */
+    --tsv-border-radius: var(--fb-radius) !important;
+    --tsv-border-radius-small: calc(var(--fb-radius) * 0.5) !important;
+    --tsv-border-radius-large: calc(var(--fb-radius) * 1.5) !important;
+    --tsv-border-radius-xlarge: calc(var(--fb-radius) * 2) !important;
+    --tsv-border-radius-xxlarge: calc(var(--fb-radius) * 2.5) !important;
+    --tsv-border-radius-xxxlarge: calc(var(--fb-radius) * 3) !important;
+
+    /* --- Tree sizing --- */
+    --ts-tree-channel-height-default: var(--fb-tree-row) !important;
+    --ts-tree-client-height-default: var(--fb-tree-row) !important;
+    --ts-tree-client-height-compact: var(--fb-tree-row) !important;
+    --ts-tree-spacer-height-default: calc(var(--fb-tree-row) * 0.75) !important;
+    --ts-tree-badges-height-default: 23px !important;
+    --ts-tree-badges-height-compact: 23px !important;
+}
+
+/* ============ Structural fixes (learned on Graphite) ============ */
+
+/* Channel names can contain newlines + padding spaces → single line */
+.ts-server-tree-item-leaf .ts-server-tree-item-text,
+.ts-server-tree-item-leaf .ts-server-tree-channel-info {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.ts-server-tree-item-leaf {
+    overflow: hidden !important;
+}
+
+/* Row pills use 7px insets sized for 44px rows */
+.ts-server-tree-item-leaf .ts-server-tree-item-background-image,
+.ts-server-tree-item-leaf .ts-server-tree-item-background-image-full,
+.ts-server-tree-item-leaf .ts-server-tree-item-background-no-image,
+.ts-server-tree-item-leaf .tsv-item-highlight,
+.ts-server-tree-item-leaf .tsv-item-highlight-extra {
+    top: 2px !important;
+    bottom: 2px !important;
+}
+
+/* Chat links: stock re-declares the color per message element */
+.ts-chat-room-event-detailed,
+.ts-chat-room-event-detailed.ownclient,
+.ts-chat-room-event-detailed.ts-currently-referencing {
+    --tsv-chat-link-color: var(--fb-chat-link) !important;
+}
+
+/* Chat input focus/hover: quiet border instead of glaring highlight */
+.ts-chat-input-container.focus,
+.ts-chat-input-container:hover {
+    border-color: var(--fb-border-strong) !important;
+}
+
+.ts-chat-input-container.focus .ts-chat-input-emoji-picker,
+.ts-chat-input-container:hover .ts-chat-input-emoji-picker {
+    border-color: var(--fb-border-strong) !important;
+    border-bottom-color: transparent !important;
+}
+
+/* System chat messages: flatten hardcoded fade-out gradient */
+.ts-chat-message-system-body {
+    background: var(--ts-chat-system-message-bg) !important;
+}
+
+/* Chat bubbles: no tail triangles */
+.ts-chat-room-event-bubble:before,
+[class*="ts-chat-room-event-bubble"]::before,
+[class*="ts-chat-room-event-bubble"]::after {
+    display: none !important;
+}
+
+/* Bigger chat image boxes (stock: 250px height, 425px max width) */
+.ts-chat-message-attachment-container {
+    --ts-attachment-height: 600px !important;
+}
+
+.ts-chat-message-attachment-container.compact {
+    --ts-attachment-height: 400px !important;
+}
+
+.ts-chat-message-attachment-inner {
+    max-width: min(900px, 100%) !important;
+}
+
+/* Channel name header above the chat */
+.tsv-bar.tsv-content-header-bar.tsv-header-bar-below-tools {
+    background: var(--fb-banner-bg) !important;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+    background-color: transparent !important;
+}
+
+::-webkit-scrollbar-thumb,
+.ts-first-launch ::-webkit-scrollbar-thumb,
+.ts-fullscreen-overlay ::-webkit-scrollbar-thumb {
+    background-color: var(--fb-scroll-thumb) !important;
+    border-radius: 3px !important;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent !important;
+}
+
+/* Context menu hardcoded bits */
+.ts-context-menu-group {
+    border-color: var(--fb-border-strong) !important;
+}
+
+.ts-context-menu-sub:after {
+    border-color: var(--fb-text-sub) !important;
+}
+
+/* Connection-info graphs & property cards */
+.ts-graph-layer-background {
+    fill: var(--fb-bg-deep) !important;
+}
+
+.ts-connection-info-additional-properties {
+    background: transparent !important;
+}
+
+.ts-connection-info-property {
+    background: var(--fb-bg-deep) !important;
+    border: 1px solid var(--fb-border) !important;
+    border-radius: var(--fb-radius) !important;
+}
+
+/* Badge showcase slots */
+.ts-account-badges-area,
+.ts-account-badges-icon-container,
+.ts-account-badges-active-area {
+    background: var(--fb-bg-flat) !important;
+}

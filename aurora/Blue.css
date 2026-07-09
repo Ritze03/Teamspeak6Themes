@@ -1,0 +1,28 @@
+/* Aurora - Blue: deep blue night with cyan and indigo glows. */
+@import url(AuroraBase.css?v=12);
+
+:root,
+::after,
+::before {
+    --au-accent: #60a5fa;
+    --au-accent-strong: #3b82f6;
+    --au-link: #93c5fd;
+    --au-self-bg: rgba(96, 165, 250, 0.17);
+    --au-orb-1: rgba(37, 99, 235, 0.30);
+    --au-orb-2: rgba(34, 211, 238, 0.18);
+    --au-orb-3: rgba(99, 102, 241, 0.14);
+    --au-orb-4: rgba(14, 165, 233, 0.10);
+
+    /* Blue-tinted canvas and glass surfaces (base defaults are violet) */
+    --au-canvas: #080c14;
+    --au-glass-strong: rgba(15, 22, 36, 0.8);
+    --fb-bg-deep: rgba(4, 7, 12, 0.85);
+    --fb-bg-contrast: rgba(7, 10, 16, 0.72);
+    --fb-bg-window: rgba(10, 14, 22, 0.55);
+    --fb-bg-header: rgba(12, 17, 28, 0.55);
+    --fb-bg-flat: rgba(14, 20, 30, 0.45);
+    --fb-bg: rgba(17, 24, 36, 0.5);
+    --fb-text: #e9eef7;
+    --fb-text-sub: #93a2b8;
+    --fb-menu-bg: rgba(15, 22, 36, 0.78);
+}

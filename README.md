@@ -1,82 +1,56 @@
 # TeamSpeak 6 Themes
 
-Theme extensions for the TeamSpeak 6 client, built by reverse-engineering
-the client's CSS variable system (from a local dump of the client UI in
-`TeamspeakOriginal/` — not committed).
+Two custom themes for the new TeamSpeak client, each with several variants
+to pick from.
 
-The themes are designed for **"Compact"** under
-**Settings → Appearance → Tree Style**, but they also work with the
-"Detailed" mode.
+## Graphite — compact & dark
 
-## Extensions
+A clean dark-gray look with a compact server tree, so more channels and
+users fit on your screen. Colored icons and talking indicators stay just
+like you know them.
 
-### Graphite (`graphite-compact/`, identifier `de.wurst.graphite`)
-
-Compact dark-gray theme family. 26px server-tree rows, layered gray
-backgrounds, vanilla TeamSpeak accent colors for icons and indicators.
-
-| Sub-theme | File | Look |
-|---|---|---|
-| Compact - Vanilla | `Vanilla.css` | Gray backgrounds, stock accents, blue buttons |
-| Compact - Monochrome | `Monochrome.css` | Gray UI chrome too; only content/status stays colored |
-| Compact - Amoled | `Amoled.css` | Pitch-black surfaces, 1px pane separator lines |
-| Compact NoScroll - * | `NoScroll*.css` | Same, without tree/chat scrollbars |
-
-Architecture: `GraphiteBase.css` (shared) ← imported by every sub-theme with a
-cache-buster (`GraphiteBase.css?v=N`). **Bump `N` in all sub-theme imports
-whenever the base changes** — the client caches the import URL per session.
-
-### Aurora (`aurora/`, identifier `de.wurst.aurora`)
-
-The glassmorphism look promoted to its own extension, at Graphite's compact
-sizing (26px tree rows). `FableCore.css` (copy) ← `AuroraBase.css` (glass
-surfaces, orbs, sizing; variant knobs `--au-accent/-strong`, `--au-link`,
-`--au-self-bg`, `--au-orb-1..4`, `--au-canvas`) ← variants:
-
-| Sub-theme | Look |
+| Variant | Look |
 |---|---|
-| Aurora - Violet | The original violet/cyan/pink aurora |
-| Aurora - Blue | Deep blue night, cyan/indigo glows |
-| Aurora - Green | Emerald/teal northern lights |
-| Aurora - Monochrome | Silver glow, neutral glass, gray UI chrome (voice ring stays vanilla blue) |
-| Aurora NoScroll - * | Same, without tree/chat scrollbars |
+| Compact - Vanilla | Gray backgrounds, normal TeamSpeak colors, blue buttons |
+| Compact - Monochrome | Buttons and highlights turn gray too — only icons stay colored |
+| Compact - Amoled | Pitch black, perfect for OLED screens |
+| Compact NoScroll - … | The same three, but without scrollbars in the channel tree and chat |
 
-`aurora/FableCore.css` is the plumbing layer that maps every client variable
-onto a `--fb-*` palette contract; `AuroraBase.css` builds the glass look on
-top of it.
+## Aurora — glassy & glowing
 
-## Install
+Frosted, semi-transparent panels floating over soft glowing lights, with
+the same compact server tree as Graphite.
 
-Copy the extension folder into `~/.config/TeamSpeak/Default/extensions/`
-(**real files — the client refuses symlinked folders**), then pick the theme
-under Settings → Appearance. No restart needed for re-scans; the settings
-page re-enumerates extensions when opened.
+| Variant | Look |
+|---|---|
+| Aurora - Violet | Violet, cyan and pink glow |
+| Aurora - Blue | Deep blue night |
+| Aurora - Green | Emerald northern lights |
+| Aurora - Monochrome | Silver glow, gray accents |
+| Aurora NoScroll - … | The same four, without scrollbars in the channel tree and chat |
 
-## Client quirks (hard-won)
+## How to install
 
-- The client injects its default `:root` variables **after** the user
-  stylesheet → every variable override needs `!important`.
-- `package.json` requires `image`, `repository`, and per-theme `image`
-  fields, or the extension is silently ignored.
-- **Theme names max 30 characters** — one longer name invalidates the whole
-  extension.
-- Default palette lives in `main.html`'s `<head>`, not `main.css`. A few
-  values are re-declared per element (e.g. chat link color on
-  `.ts-chat-room-event-detailed`) and must be overridden at that scope.
-- Chat attachment boxes size via `--ts-attachment-height` +
-  `.ts-chat-message-attachment-inner { max-width }`. Don't fight the system
-  with `width/height: auto` — it crops.
-- Channel names may contain literal newlines/padding spaces rendered with
-  `white-space: pre` — compact rows must collapse them.
+1. Download this repository: click the green **Code** button above →
+   **Download ZIP**, then unpack it somewhere.
+2. Open TeamSpeak and go to **Settings → Appearance**.
+3. Turn on the **User Theme** toggle.
+4. Click the small **folder icon** next to the theme cards. TeamSpeak opens
+   its **extensions** folder for you.
+   - Linux: usually `~/.config/TeamSpeak/Default/extensions`
+   - Windows: usually `%APPDATA%\TeamSpeak\Default\extensions`
+5. Move (or copy) the folders **`de.wurst.graphite`** and
+   **`de.wurst.aurora`** from the unpacked download into that extensions
+   folder. You can also install just one of them.
+6. Back in TeamSpeak, click the small **refresh icon** (circular arrow) next
+   to the folder icon — the new themes appear as cards.
+7. Click the theme you like. Done!
 
-## Dev loop
+## Good to know
 
-1. Launch: `teamspeak --remote-debugging-port=9222 '--remote-allow-origins=*'`
-2. Edit CSS in this repo, `cp` to the extensions dir.
-3. Hot reload via CDP:
-   `document.getElementById("userStyle").href = "tsui://extension/<id>/<file>.css?v=" + Date.now()`
-4. Screenshot via CDP `Page.captureScreenshot` to verify.
-
-`Compact.css` (the original hand-made theme, kept for reference) and the
-`TeamspeakOriginal/` client dump live only in the local working copy — both
-are gitignored.
+- The themes are designed for the **"Compact"** setting under
+  **Settings → Appearance → Tree Style**, but they also work with
+  "Detailed".
+- Updating: replace the two folders with new versions, then press the
+  refresh icon (or restart TeamSpeak).
+- Uninstalling: delete the folders from the extensions folder.

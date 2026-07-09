@@ -33,8 +33,8 @@ the same compact server tree as Graphite.
 
 ## How to install
 
-1. Download this repository: click the green **Code** button above →
-   **Download ZIP**, then unpack it somewhere.
+1. **[⬇ Download the themes (ZIP)](https://github.com/Ritze03/Teamspeak6Themes/archive/refs/heads/master.zip)**
+   and unpack the file somewhere.
 2. Open TeamSpeak and go to **Settings → Appearance**.
 3. Turn on the **User Theme** toggle.
 4. Click the small **folder icon** next to the theme cards. TeamSpeak opens

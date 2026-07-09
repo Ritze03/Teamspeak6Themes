@@ -1,5 +1,7 @@
 # TeamSpeak 6 Themes
 
+🌐 **[Read this page as a website — English / Deutsch](https://ritze03.github.io/Teamspeak6Themes/)**
+
 Two custom themes for the new TeamSpeak client, each with several variants
 to pick from.
 

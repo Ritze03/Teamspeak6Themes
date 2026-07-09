@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TeamSpeak 6 Themes — Graphite & Aurora</title>
+<style>
+    :root {
+        --bg: #141414;
+        --panel: #1e1e1e;
+        --panel-2: #242424;
+        --border: #2e2e2e;
+        --text: #dedede;
+        --sub: #8f8f8f;
+        --accent: #1588fa;
+        --accent-soft: #a78bfa;
+    }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 24px 20px 80px; }
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+    }
+    h1 { font-size: 1.9rem; margin: 12px 0 4px; }
+    h2 { font-size: 1.35rem; margin: 40px 0 8px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    p { margin: 10px 0; }
+    a { color: var(--accent); }
+    .lang-switch {
+        display: flex;
+        gap: 6px;
+        margin-left: auto;
+    }
+    .lang-switch button {
+        background: var(--panel);
+        color: var(--sub);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .lang-switch button.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+    }
+    .repo-link {
+        display: inline-block;
+        margin-top: 4px;
+        color: var(--sub);
+        font-size: 0.95rem;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0;
+        background: var(--panel);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { background: var(--panel-2); font-weight: 600; }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { white-space: nowrap; font-weight: 600; }
+    ol { padding-left: 22px; }
+    ol li { margin: 10px 0; }
+    ul li { margin: 8px 0; }
+    code {
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 1px 6px;
+        font-size: 0.9em;
+    }
+    .note {
+        background: var(--panel);
+        border-left: 3px solid var(--accent);
+        border-radius: 0 8px 8px 0;
+        padding: 10px 14px;
+        margin: 14px 0;
+    }
+    .aurora h2 { border-image: linear-gradient(90deg, var(--accent-soft), transparent) 1; }
+    [data-lang] { display: none; }
+    footer { margin-top: 60px; color: var(--sub); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <div>
+            <h1>TeamSpeak 6 Themes</h1>
+            <a class="repo-link" href="https://github.com/Ritze03/Teamspeak6Themes">github.com/Ritze03/Teamspeak6Themes</a>
+        </div>
+        <nav class="lang-switch" aria-label="Language">
+            <button id="btn-en" onclick="setLang('en')">English</button>
+            <button id="btn-de" onclick="setLang('de')">Deutsch</button>
+        </nav>
+    </header>
+
+    <!-- ===================== ENGLISH ===================== -->
+    <main data-lang="en">
+        <p>Two custom themes for the new TeamSpeak client, each with several
+        variants to pick from.</p>
+
+        <h2>Graphite — compact &amp; dark</h2>
+        <p>A clean dark-gray look with a compact server tree, so more channels
+        and users fit on your screen. Colored icons and talking indicators
+        stay just like you know them.</p>
+        <table>
+            <tr><th>Variant</th><th>Look</th></tr>
+            <tr><td>Compact - Vanilla</td><td>Gray backgrounds, normal TeamSpeak colors, blue buttons</td></tr>
+            <tr><td>Compact - Monochrome</td><td>Buttons and highlights turn gray too — only icons stay colored</td></tr>
+            <tr><td>Compact - Amoled</td><td>Pitch black, perfect for OLED screens</td></tr>
+            <tr><td>Compact NoScroll - …</td><td>The same three, but without scrollbars in the channel tree and chat</td></tr>
+        </table>
+
+        <div class="aurora">
+        <h2>Aurora — glassy &amp; glowing</h2>
+        <p>Frosted, semi-transparent panels floating over soft glowing lights,
+        with the same compact server tree as Graphite.</p>
+        <table>
+            <tr><th>Variant</th><th>Look</th></tr>
+            <tr><td>Aurora - Violet</td><td>Violet, cyan and pink glow</td></tr>
+            <tr><td>Aurora - Blue</td><td>Deep blue night</td></tr>
+            <tr><td>Aurora - Green</td><td>Emerald northern lights</td></tr>
+            <tr><td>Aurora - Monochrome</td><td>Silver glow, gray accents</td></tr>
+            <tr><td>Aurora NoScroll - …</td><td>The same four, without scrollbars in the channel tree and chat</td></tr>
+        </table>
+        </div>
+
+        <h2>How to install</h2>
+        <ol>
+            <li>Download the themes: grab the ZIP from the
+                <a href="https://github.com/Ritze03/Teamspeak6Themes">GitHub repository</a>
+                (green <strong>Code</strong> button → <strong>Download ZIP</strong>),
+                then unpack it somewhere.</li>
+            <li>Open TeamSpeak and go to <strong>Settings → Appearance</strong>.</li>
+            <li>Turn on the <strong>User Theme</strong> toggle.</li>
+            <li>Click the small <strong>folder icon</strong> next to the theme
+                cards. TeamSpeak opens its <strong>extensions</strong> folder
+                for you.
+                <ul>
+                    <li>Linux: usually <code>~/.config/TeamSpeak/Default/extensions</code></li>
+                    <li>Windows: usually <code>%APPDATA%\TeamSpeak\Default\extensions</code></li>
+                </ul>
+            </li>
+            <li>Move (or copy) the folders <strong><code>de.wurst.graphite</code></strong>
+                and <strong><code>de.wurst.aurora</code></strong> from the unpacked
+                download into that extensions folder. You can also install just
+                one of them.</li>
+            <li>Back in TeamSpeak, click the small <strong>refresh icon</strong>
+                (circular arrow) next to the folder icon — the new themes appear
+                as cards.</li>
+            <li>Click the theme you like.</li>
+            <li><strong>Restart TeamSpeak</strong> — the channel tree only
+                applies its sizing properly after a restart. Done!</li>
+        </ol>
+
+        <h2>Good to know</h2>
+        <ul>
+            <li>The themes are designed for the <strong>"Compact"</strong> setting
+                under <strong>Settings → Appearance → Tree Style</strong>, but they
+                also work with "Detailed".</li>
+            <li class="note"><strong>Restart TeamSpeak after activating or switching
+                a theme</strong> — the channel tree view only updates its sizing
+                properly after a restart. Until then the channel list may look
+                squished or oddly spaced.</li>
+            <li>Updating: replace the two folders with new versions, then press
+                the refresh icon (or restart TeamSpeak).</li>
+            <li>Uninstalling: delete the folders from the extensions folder.</li>
+        </ul>
+    </main>
+
+    <!-- ===================== DEUTSCH ===================== -->
+    <main data-lang="de">
+        <p>Zwei individuelle Themes für den neuen TeamSpeak-Client, jeweils mit
+        mehreren Varianten zur Auswahl.</p>
+
+        <h2>Graphite — kompakt &amp; dunkel</h2>
+        <p>Ein aufgeräumter dunkelgrauer Look mit kompaktem Channel-Baum, damit
+        mehr Channels und Nutzer auf den Bildschirm passen. Farbige Icons und
+        Sprech-Anzeigen bleiben so, wie man sie kennt.</p>
+        <table>
+            <tr><th>Variante</th><th>Aussehen</th></tr>
+            <tr><td>Compact - Vanilla</td><td>Graue Hintergründe, normale TeamSpeak-Farben, blaue Buttons</td></tr>
+            <tr><td>Compact - Monochrome</td><td>Buttons und Hervorhebungen werden ebenfalls grau — nur Icons bleiben farbig</td></tr>
+            <tr><td>Compact - Amoled</td><td>Tiefschwarz, perfekt für OLED-Bildschirme</td></tr>
+            <tr><td>Compact NoScroll - …</td><td>Dieselben drei, aber ohne Scrollbalken im Channel-Baum und Chat</td></tr>
+        </table>
+
+        <div class="aurora">
+        <h2>Aurora — glasig &amp; leuchtend</h2>
+        <p>Milchglas-Panels, die über sanft leuchtenden Lichtern schweben — mit
+        demselben kompakten Channel-Baum wie Graphite.</p>
+        <table>
+            <tr><th>Variante</th><th>Aussehen</th></tr>
+            <tr><td>Aurora - Violet</td><td>Violettes, cyanes und pinkes Leuchten</td></tr>
+            <tr><td>Aurora - Blue</td><td>Tiefblaue Nacht</td></tr>
+            <tr><td>Aurora - Green</td><td>Smaragdgrüne Polarlichter</td></tr>
+            <tr><td>Aurora - Monochrome</td><td>Silbernes Leuchten, graue Akzente</td></tr>
+            <tr><td>Aurora NoScroll - …</td><td>Dieselben vier, ohne Scrollbalken im Channel-Baum und Chat</td></tr>
+        </table>
+        </div>
+
+        <h2>Installation</h2>
+        <ol>
+            <li>Themes herunterladen: das ZIP aus dem
+                <a href="https://github.com/Ritze03/Teamspeak6Themes">GitHub-Repository</a>
+                laden (grüner <strong>Code</strong>-Button →
+                <strong>Download ZIP</strong>) und irgendwo entpacken.</li>
+            <li>TeamSpeak öffnen und zu <strong>Settings → Appearance</strong>
+                (Einstellungen → Aussehen) gehen.</li>
+            <li>Den Schalter <strong>User Theme</strong> aktivieren.</li>
+            <li>Auf das kleine <strong>Ordner-Symbol</strong> neben den
+                Theme-Karten klicken. TeamSpeak öffnet damit seinen
+                <strong>extensions</strong>-Ordner.
+                <ul>
+                    <li>Linux: meist <code>~/.config/TeamSpeak/Default/extensions</code></li>
+                    <li>Windows: meist <code>%APPDATA%\TeamSpeak\Default\extensions</code></li>
+                </ul>
+            </li>
+            <li>Die Ordner <strong><code>de.wurst.graphite</code></strong> und
+                <strong><code>de.wurst.aurora</code></strong> aus dem entpackten
+                Download in diesen extensions-Ordner verschieben (oder kopieren).
+                Es geht auch nur einer von beiden.</li>
+            <li>Zurück in TeamSpeak auf das kleine
+                <strong>Aktualisieren-Symbol</strong> (Kreispfeil) neben dem
+                Ordner-Symbol klicken — die neuen Themes erscheinen als
+                Karten.</li>
+            <li>Das gewünschte Theme anklicken.</li>
+            <li><strong>TeamSpeak neu starten</strong> — der Channel-Baum
+                übernimmt seine Größen erst nach einem Neustart richtig.
+                Fertig!</li>
+        </ol>
+
+        <h2>Gut zu wissen</h2>
+        <ul>
+            <li>Die Themes sind für die Einstellung <strong>„Compact“</strong>
+                unter <strong>Settings → Appearance → Tree Style</strong>
+                gestaltet, funktionieren aber auch mit „Detailed“.</li>
+            <li class="note"><strong>Nach dem Aktivieren oder Wechseln eines Themes
+                TeamSpeak neu starten</strong> — der Channel-Baum übernimmt seine
+                Größen erst nach einem Neustart richtig. Bis dahin kann die
+                Channel-Liste gestaucht oder seltsam verteilt aussehen.</li>
+            <li>Aktualisieren: die beiden Ordner durch neue Versionen ersetzen
+                und das Aktualisieren-Symbol drücken (oder TeamSpeak neu
+                starten).</li>
+            <li>Deinstallieren: die Ordner aus dem extensions-Ordner
+                löschen.</li>
+        </ul>
+    </main>
+
+    <footer>
+        <span data-lang="en">Graphite &amp; Aurora — themes for the TeamSpeak 6 client.</span>
+        <span data-lang="de">Graphite &amp; Aurora — Themes für den TeamSpeak-6-Client.</span>
+    </footer>
+</div>
+
+<script>
+function setLang(lang) {
+    document.querySelectorAll("[data-lang]").forEach(el => {
+        el.style.display = el.dataset.lang === lang ? (el.tagName === "SPAN" ? "inline" : "block") : "none";
+    });
+    document.getElementById("btn-en").classList.toggle("active", lang === "en");
+    document.getElementById("btn-de").classList.toggle("active", lang === "de");
+    document.documentElement.lang = lang;
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+}
+let lang = null;
+try { lang = localStorage.getItem("lang"); } catch (e) {}
+if (lang !== "en" && lang !== "de") {
+    lang = (navigator.language || "en").toLowerCase().startsWith("de") ? "de" : "en";
+}
+setLang(lang);
+</script>
+</body>
+</html>

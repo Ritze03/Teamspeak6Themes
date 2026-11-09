@@ -5,8 +5,8 @@
    compact 26px server tree.
 
    Not a theme itself — imported by the sub-themes:
-     Vanilla.css     "Compact - Vanilla"    (blue buttons/tint, as stock)
-     Monochrome.css  "Compact - Monochrome" (gray buttons/tint)
+     Vanilla.css     "Vanilla"            (blue buttons/tint, as stock)
+     Monochrome.css  "Vanilla Monochrome" (gray buttons/tint)
 
    Note: the client injects its default variables AFTER this stylesheet,
    so every :root variable override needs !important.

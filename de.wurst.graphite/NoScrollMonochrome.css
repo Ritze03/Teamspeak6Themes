@@ -1,3 +1,3 @@
-/* Graphite "Compact (NoScroll) - Monochrome": Monochrome without tree/chat scrollbars. */
-@import url(Monochrome.css);
+/* Graphite "Vanilla Monochrome - NoScroll": Vanilla Monochrome without tree/chat scrollbars. */
+@import url(Monochrome.css?v=2);
 @import url(NoScroll.css?v=1);

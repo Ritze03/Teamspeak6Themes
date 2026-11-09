@@ -22,40 +22,52 @@
   "content": {
     "themes": [
       {
-        "name": "Compact - Vanilla",
+        "name": "Vanilla",
         "source": "Vanilla.css",
         "apiVersion": 1,
         "image": "Vanilla.png"
       },
       {
-        "name": "Compact - Monochrome",
+        "name": "Vanilla Monochrome",
         "source": "Monochrome.css",
         "apiVersion": 1,
         "image": "Monochrome.png"
       },
       {
-        "name": "Compact - Amoled",
+        "name": "Amoled",
         "source": "Amoled.css",
         "apiVersion": 1,
         "image": "Amoled.png"
       },
       {
-        "name": "Compact NoScroll - Vanilla",
+        "name": "Vanilla - NoScroll",
         "source": "NoScrollVanilla.css",
         "apiVersion": 1,
         "image": "NoScrollVanilla.png"
       },
       {
-        "name": "Compact NoScroll - Monochrome",
+        "name": "Vanilla Monochrome - NoScroll",
         "source": "NoScrollMonochrome.css",
         "apiVersion": 1,
         "image": "NoScrollMonochrome.png"
       },
       {
-        "name": "Compact NoScroll - Amoled",
+        "name": "Amoled - NoScroll",
         "source": "NoScrollAmoled.css",
         "apiVersion": 1,
         "image": "NoScrollAmoled.png"
+      },
+      {
+        "name": "Amoled Monochrome",
+        "source": "AmoledMonochrome.css",
+        "apiVersion": 1,
+        "image": "AmoledMonochrome.png"
+      },
+      {
+        "name": "Amoled Monochrome - NoScroll",
+        "source": "NoScrollAmoledMonochrome.css",
+        "apiVersion": 1,
+        "image": "NoScrollAmoledMonochrome.png"
       }
     ]
   }

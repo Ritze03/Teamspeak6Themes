@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svg width="100%" height="100%" viewBox="0 0 16 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g transform="matrix(1,0,0,1,-338,-2)">
+        <g id="dashline" transform="matrix(1,0,0,1.125,338,2)">
+            <rect x="0" y="0" width="16" height="16" style="fill:none;"/>
+            <g transform="matrix(1.10294,0,0,0.653595,-364.482,0.70459)">
+                <path d="M341.344,10.31C341.344,10.029 341.192,9.802 341.005,9.802L330.802,9.802C330.615,9.802 330.464,10.029 330.464,10.31L330.464,12.014C330.464,12.295 330.615,12.522 330.802,12.522L341.005,12.522C341.192,12.522 341.344,12.295 341.344,12.014L341.344,10.31Z" style="fill:rgb(12,13,15);"/>
+            </g>
+        </g>
+    </g>
+</svg>

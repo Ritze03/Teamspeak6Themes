@@ -1,49 +1,7 @@
 /*
-   Graphite "Compact - Monochrome": like Vanilla, but the blue UI chrome
-   (buttons, tint, tab/selection accents, toggles, links) becomes gray.
-   Selected/active states read through light-gray shades instead of blue.
-   Voice indicators, status colors and server-content icons stay vanilla.
+   Graphite "Vanilla Monochrome": like Vanilla, but the blue UI chrome
+   becomes gray (see MonochromeAccents.css). Selected/active states read
+   through light-gray shades instead of blue.
 */
 @import url(GraphiteBase.css?v=15);
-
-:root,
-::after,
-::before {
-    /* --- Tint / selection accents --- */
-    --tsv-tint: #b0b0b0 !important;
-    --tsv-tint2: #b0b0b0 !important;
-    --tsv-highlight-color: #cfcfcf !important;
-
-    /* UI icons lose the blue tint, but the voice indicator outlines derive
-       from --tsv-icon-tint in stock — re-pin them to the vanilla blue */
-    --tsv-icon-tint: #b0b0b0 !important;
-    --tsv-client-talking--outline: #0353F4 !important;
-    --tsv-client-silent--outline: #0353F4 !important;
-
-    /* --- Buttons --- */
-    --tsv-button-bg: linear-gradient(60deg, #3a3a3a, #464646) !important;
-    --tsv-button-filled-bg: linear-gradient(60deg, #3a3a3a, #464646) !important;
-    --tsv-button-hover-bg: #555555 !important;
-    --hero-button-background: linear-gradient(-45deg, #4a4a4a 1%, #383838 100%) !important;
-    --hero-button-border: 0.5px solid #6a6a6a !important;
-    --font-color-button-white: #2d2d2d !important;
-
-    /* --- Controls (state must stay readable: unchecked dark, checked light) --- */
-    --ts-toggle-bg-color: #3a3a3a !important;
-    --ts-toggle-checked-bg-color: #8a8a8a !important;
-    --ts-toggle-checked-pill-color: #f0f0f0 !important;
-    --tsv-control-handle-active-bg: linear-gradient(to bottom, #7a7a7a, #a0a0a0) !important;
-    --ts-select-arrow-color: #b0b0b0 !important;
-    --ts-primary-accent-color: #b0b0b0 !important;
-    --ts-drag-border: #d0d0d0 !important;
-
-    /* --- Menus / links --- */
-    --ts-menu-action-color: #c0c0c0 !important;
-    --gc-chat-link: #c8c8c8 !important;
-}
-
-/* Links keep an underline so they stay recognizable without color */
-.ts-parsed-text-content a,
-.ts-chat-message-content a {
-    text-decoration: underline !important;
-}
+@import url(MonochromeAccents.css?v=1);

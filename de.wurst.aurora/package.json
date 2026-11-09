@@ -22,49 +22,49 @@
   "content": {
     "themes": [
       {
-        "name": "Aurora - Violet",
+        "name": "Violet",
         "source": "Violet.css",
         "apiVersion": 1,
         "image": "Violet.png"
       },
       {
-        "name": "Aurora - Blue",
+        "name": "Blue",
         "source": "Blue.css",
         "apiVersion": 1,
         "image": "Blue.png"
       },
       {
-        "name": "Aurora - Green",
+        "name": "Green",
         "source": "Green.css",
         "apiVersion": 1,
         "image": "Green.png"
       },
       {
-        "name": "Aurora - Monochrome",
+        "name": "Monochrome",
         "source": "Monochrome.css",
         "apiVersion": 1,
         "image": "Monochrome.png"
       },
       {
-        "name": "Aurora NoScroll - Violet",
+        "name": "Violet - NoScroll",
         "source": "NoScrollViolet.css",
         "apiVersion": 1,
         "image": "NoScrollViolet.png"
       },
       {
-        "name": "Aurora NoScroll - Blue",
+        "name": "Blue - NoScroll",
         "source": "NoScrollBlue.css",
         "apiVersion": 1,
         "image": "NoScrollBlue.png"
       },
       {
-        "name": "Aurora NoScroll - Green",
+        "name": "Green - NoScroll",
         "source": "NoScrollGreen.css",
         "apiVersion": 1,
         "image": "NoScrollGreen.png"
       },
       {
-        "name": "Aurora NoScroll - Monochrome",
+        "name": "Monochrome - NoScroll",
         "source": "NoScrollMonochrome.css",
         "apiVersion": 1,
         "image": "NoScrollMonochrome.png"

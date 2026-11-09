@@ -2,294 +2,445 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TeamSpeak 6 Themes — Graphite & Aurora</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TeamSpeak 6 Themes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Compact Graphite and Aurora themes for the TeamSpeak 6 client, closer to the feel of TeamSpeak 3.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-    :root {
-        --bg: #141414;
-        --panel: #1e1e1e;
-        --panel-2: #242424;
-        --border: #2e2e2e;
-        --text: #dedede;
-        --sub: #8f8f8f;
-        --accent: #1588fa;
-        --accent-soft: #a78bfa;
-    }
-    * { box-sizing: border-box; }
-    body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--text);
-        font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
-    }
-    .wrap { max-width: 860px; margin: 0 auto; padding: 24px 20px 80px; }
-    header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        flex-wrap: wrap;
-        margin-bottom: 8px;
-    }
-    h1 { font-size: 1.9rem; margin: 12px 0 4px; }
-    h2 { font-size: 1.35rem; margin: 40px 0 8px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-    p { margin: 10px 0; }
-    a { color: var(--accent); }
-    .lang-switch {
-        display: flex;
-        gap: 6px;
-        margin-left: auto;
-    }
-    .lang-switch button {
-        background: var(--panel);
-        color: var(--sub);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 8px 16px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        cursor: pointer;
-    }
-    .lang-switch button.active {
-        background: var(--accent);
-        border-color: var(--accent);
-        color: #fff;
-    }
-    .repo-link {
-        display: inline-block;
-        margin-top: 4px;
-        color: var(--sub);
-        font-size: 0.95rem;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 14px 0;
-        background: var(--panel);
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
-    th { background: var(--panel-2); font-weight: 600; }
-    tr:last-child td { border-bottom: none; }
-    td:first-child { white-space: nowrap; font-weight: 600; }
-    ol { padding-left: 22px; }
-    ol li { margin: 10px 0; }
-    ul li { margin: 8px 0; }
-    code {
-        background: var(--panel-2);
-        border: 1px solid var(--border);
-        border-radius: 5px;
-        padding: 1px 6px;
-        font-size: 0.9em;
-    }
-    .note {
-        background: var(--panel);
-        border-left: 3px solid var(--accent);
-        border-radius: 0 8px 8px 0;
-        padding: 10px 14px;
-        margin: 14px 0;
-    }
-    .dl-btn {
-        display: inline-block;
-        margin: 8px 0 2px;
-        background: var(--accent);
-        color: #fff;
-        font-weight: 600;
-        text-decoration: none;
-        padding: 10px 18px;
-        border-radius: 8px;
-    }
-    .dl-btn:hover { filter: brightness(1.15); }
-    .aurora h2 { border-image: linear-gradient(90deg, var(--accent-soft), transparent) 1; }
-    [data-lang] { display: none; }
-    footer { margin-top: 60px; color: var(--sub); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 16px; }
+/* Layout: slim top bar → left-aligned hero with four actions → full-width live client preview
+   → two theme panels → numbered install sequence. Single dark look, taken from the logo tile. */
+:root {
+    color-scheme: dark;
+    --ink: #14161b;          /* logo tile, bottom */
+    --slate: #1b1e25;        /* logo tile, top: raised surfaces */
+    --slate-2: #232731;      /* hover / chips */
+    --line: #2c313c;
+    --text: #eceef3;
+    --muted: #9298a6;
+    --blue: #1588fa;         /* selected-channel pill in the logo */
+    --violet: #a78bfa;       /* channel dots in the logo */
+    --on-accent: #ffffff;
+    --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+    --step--1: 0.875rem;
+    --step-0: 1rem;
+    --step-1: 1.25rem;
+    --step-2: 1.75rem;
+    --step-3: clamp(2.3rem, 5.2vw, 3.9rem);
+    --radius: 14px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font: 400 var(--step-0)/1.6 var(--font-body);
+    -webkit-font-smoothing: antialiased;
+}
+/* ambient glow, same radial as the icon (bottom-right, violet → blue) */
+body::after {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+        radial-gradient(60rem 40rem at 85% -10%, color-mix(in srgb, var(--violet) 16%, transparent), transparent 70%),
+        radial-gradient(50rem 36rem at 5% 10%, color-mix(in srgb, var(--blue) 10%, transparent), transparent 70%);
+}
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; border-radius: 6px; }
+code {
+    font-family: var(--font-mono); font-size: 0.86em;
+    background: var(--slate-2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px;
+    overflow-wrap: anywhere;
+}
+.shell {
+    max-width: 1240px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.narrow { max-width: 880px; }
+
+/* ---- top bar ---- */
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 18px; }
+.mark { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none;
+    font: 700 var(--step-0)/1 var(--font-display); letter-spacing: -0.01em; }
+.mark img { width: 36px; height: 36px; }
+.lang { display: flex; background: var(--slate); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.lang button {
+    background: none; border: 0; color: var(--muted); cursor: pointer;
+    font: 600 var(--step--1)/1 var(--font-body); padding: 7px 12px; border-radius: 999px;
+}
+.lang button[aria-pressed="true"] { background: var(--slate-2); color: var(--text); }
+
+/* ---- hero ---- */
+/* landing fills the first screen; the preview starts below the fold */
+.landing { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
+.hero { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; align-items: center; gap: 48px; padding-block: 32px 48px; }
+/* showcase: rendered previews of every variant, crossfading; only where there is room */
+.showcase { display: none; margin: 0; }
+@media (min-width: 1000px) {
+    .hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+    .showcase { display: grid; gap: 14px; justify-items: center; }
+    .hero h1 { font-size: clamp(2.2rem, 3.3vw, 3.5rem); max-width: none; }
+}
+.shots {
+    position: relative; width: min(100%, 520px); aspect-ratio: 1; border-radius: var(--radius);
+    overflow: hidden; border: 1px solid var(--line); background: #000;
+    box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .8), 0 0 0 6px color-mix(in srgb, var(--slate) 60%, transparent);
+    /* the crops end mid-window: let the right and bottom edges fade into the page */
+    -webkit-mask: linear-gradient(90deg, #000 70%, transparent), linear-gradient(#000 70%, transparent);
+    -webkit-mask-composite: source-in; mask-composite: intersect;
+}
+.shots img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .9s ease; }
+.shots img.on { opacity: 1; z-index: 2; }
+/* the outgoing shot stays opaque underneath, so the crossfade never dips to black */
+.shots img.prev { opacity: 1; z-index: 1; }
+.showcase figcaption { font: 500 0.75rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); min-height: 1em; }
+.showcase figcaption b { color: var(--text); font-weight: 500; }
+@media (prefers-reduced-motion: reduce) { .shots img { transition: none; } }
+.cue {
+    align-self: center; display: inline-flex; flex-direction: column; align-items: center; gap: 6px;
+    padding-block: 12px 28px; color: var(--muted); text-decoration: none;
+    font: 500 0.75rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.cue:hover { color: var(--text); }
+.cue svg { width: 22px; height: 22px; animation: nudge 2.4s ease-in-out infinite; }
+@keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+@media (prefers-reduced-motion: reduce) { .cue svg { animation: none; } }
+.eyebrow { font: 500 var(--step--1)/1 var(--font-mono); color: var(--violet); letter-spacing: 0.04em; margin: 0 0 18px; }
+h1 {
+    font: 800 var(--step-3)/1.02 var(--font-display); letter-spacing: -0.035em;
+    margin: 0; max-width: 19ch; text-wrap: balance;
+}
+h1 em { font-style: normal; color: transparent;
+    background: linear-gradient(90deg, var(--blue), var(--violet)); -webkit-background-clip: text; background-clip: text; }
+.lede { color: var(--muted); font-size: var(--step-1); line-height: 1.5; max-width: 52ch; margin: 20px 0 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.btn {
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer;
+    font: 600 var(--step-0)/1 var(--font-body); padding: 13px 20px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--slate); color: var(--text);
+    transition: background .15s, border-color .15s, transform .15s;
+}
+.btn:hover { background: var(--slate-2); border-color: var(--muted); }
+.btn:active { transform: translateY(1px); }
+.btn.primary { background: var(--blue); border-color: var(--blue); color: var(--on-accent); }
+.btn.primary:hover { background: color-mix(in srgb, var(--blue) 85%, white); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+
+/* ---- preview ---- */
+.preview { padding-block: 8px 24px; scroll-margin-top: 16px; }
+/* picker: one connected control per theme family. Every option has the same width:
+   a group grows by its option count (--n), its basis covers its own padding,
+   border and inner gaps (10px + 4px per extra option). */
+.picker { display: flex; gap: 14px; margin-bottom: 16px; }
+.pgroup { --n: 1; flex: var(--n) 1 calc(10px + 4px * (var(--n) - 1)); display: grid; align-content: start; gap: 8px; min-width: 0; }
+.pgroup.four { --n: 4; }
+.group-label { font: 500 0.75rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-left: 4px; }
+.seg { display: flex; gap: 4px; padding: 4px; background: var(--slate); border: 1px solid var(--line); border-radius: 12px; }
+.opt {
+    flex: 1 1 0; min-width: 0; display: grid; align-content: start; gap: 8px; padding: 8px 8px 9px; cursor: pointer;
+    background: none; border: 1px solid transparent; border-radius: 8px; color: var(--muted);
+    font: 500 var(--step--1)/1.2 var(--font-body); text-align: left;
+    transition: background .15s, color .15s, border-color .15s;
+}
+.opt:hover { background: var(--slate-2); color: var(--text); }
+.opt[aria-pressed="true"] { background: var(--slate-2); border-color: var(--line); color: var(--text); box-shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 4px 14px -6px rgba(0,0,0,.6); }
+.opt .bar { height: 20px; border-radius: 5px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); opacity: .75; transition: opacity .15s; }
+.opt:hover .bar, .opt[aria-pressed="true"] .bar { opacity: 1; }
+.opt .name { min-height: 2.4em; text-wrap: balance; overflow-wrap: anywhere; }   /* two-line slot keeps tiles equal */
+.frame {
+    position: relative; aspect-ratio: 1896 / 1016; max-width: 100%; overflow: hidden;
+    border: 1px solid var(--line); border-radius: var(--radius); background: #000;
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .7), 0 0 0 6px color-mix(in srgb, var(--slate) 60%, transparent);
+}
+.frame iframe { position: absolute; top: 0; left: 0; width: 1896px; height: 1016px; border: 0; transform-origin: 0 0; }
+/* black cover while the snapshot, its fonts and the theme load, so the unstyled page never flashes */
+.frame::after {
+    content: ""; position: absolute; inset: 0; background: #000; pointer-events: none;
+    opacity: 0; transition: opacity .35s ease;
+}
+.frame.loading::after { opacity: 1; transition: none; }
+.frame.loading { cursor: progress; }
+/* look, don't touch: the snapshot never catches the wheel, clicks or swipes */
+.frame iframe { pointer-events: none; }
+.note { color: var(--muted); font-size: var(--step--1); margin: 12px 2px 0; max-width: 80ch; }
+
+/* ---- sections ---- */
+section.block { padding-block: 64px 8px; scroll-margin-top: 16px; }
+h2 { font: 700 var(--step-2)/1.15 var(--font-display); letter-spacing: -0.02em; margin: 0 0 8px; text-wrap: balance; }
+.section-lede { color: var(--muted); margin: 0 0 28px; max-width: 62ch; }
+
+
+/* install: a real sequence, so it is numbered */
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; gap: 0; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; padding-block: 16px; border-top: 1px solid var(--line); }
+.steps li:last-child { border-bottom: 1px solid var(--line); }
+.steps li::before {
+    content: counter(s); font: 700 var(--step-0)/1 var(--font-display);
+    width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
+    background: var(--slate-2); color: var(--text);
+}
+.steps li:last-child::before { background: var(--blue); color: var(--on-accent); }
+.steps p { margin: 6px 0 0; }
+.steps .paths { display: grid; gap: 6px; margin-top: 10px; font-size: var(--step--1); color: var(--muted); }
+.steps .btn { margin-top: 12px; padding: 10px 16px; font-size: var(--step--1); }
+
+.callout {
+    display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 14px; align-items: start;
+    background: color-mix(in srgb, var(--violet) 10%, var(--slate)); border: 1px solid color-mix(in srgb, var(--violet) 35%, var(--line));
+    border-radius: var(--radius); padding: 18px 20px; margin-top: 24px;
+}
+.callout svg { width: 24px; height: 24px; color: var(--violet); margin-top: 2px; }
+.callout p { margin: 0; }
+.faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; margin-top: 16px; }
+.faq div { border-top: 1px solid var(--line); padding-top: 14px; min-width: 0; }
+.faq h3 { font: 600 var(--step-0)/1.3 var(--font-body); margin: 0 0 4px; }
+.faq p { margin: 0; color: var(--muted); font-size: var(--step--1); }
+
+footer { margin-top: 72px; padding-block: 28px 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: var(--step--1);
+    display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+footer a { color: var(--muted); }
+
+/* medium: Stock + Graphite on row 1, Aurora under Graphite. With tile width t:
+   Stock = t + 10px, Graphite = 4t + 22px, gap 14px  =>  t = (100% - 46px) / 5 */
+@media (max-width: 1100px) {
+    .picker { display: grid; grid-template-columns: calc((100% - 46px) / 5 + 10px) minmax(0, 1fr); gap: 14px; }
+    .pgroup.aurora { grid-column: 2; }
+}
+@media (max-width: 560px) {
+    .picker { display: flex; flex-direction: column; }
+    .pgroup { flex: none; }
+    .seg { flex-wrap: wrap; }
+    .opt { flex: 0 0 calc(50% - 2px); }
+    .opt .name { min-height: 0; }
+}
+@media (max-width: 860px) {
+    .hero { padding-block: 24px 32px; }
+}
+@media (max-width: 480px) {
+    .btn { flex: 1 1 calc(50% - 10px); justify-content: center; padding-inline: 12px; }
+    .mark span { display: none; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-    <header>
+
+<div class="shell landing">
+    <nav class="bar" aria-label="Site">
+        <a class="mark" href="#top"><img src="icon.svg" alt=""><span>TeamSpeak 6 Themes</span></a>
+        <div class="lang" role="group" aria-label="Language">
+            <button id="btn-en" type="button" aria-pressed="true">EN</button>
+            <button id="btn-de" type="button" aria-pressed="false">DE</button>
+        </div>
+    </nav>
+
+    <header class="hero" id="top">
         <div>
-            <h1>TeamSpeak 6 Themes</h1>
-            <a class="repo-link" href="https://github.com/Ritze03/Teamspeak6Themes">github.com/Ritze03/Teamspeak6Themes</a>
+            <p class="eyebrow" data-i18n="eyebrow">Graphite &amp; Aurora · for the TeamSpeak 6 client</p>
+            <h1 data-i18n="title">Compact TeamSpeak&nbsp;6 themes with the feel of <em>TeamSpeak&nbsp;3</em>.</h1>
+            <p class="lede" data-i18n="lede">Tight channel rows, small icons and no wasted space, so your whole server fits on screen again. Two themes, eight color variants, free to use.</p>
+            <div class="actions">
+                <a class="btn" href="#preview">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <span data-i18n="btnPreview">Preview</span></a>
+                <a class="btn primary" href="https://github.com/Ritze03/Teamspeak6Themes/archive/refs/heads/master.zip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                    <span data-i18n="btnDownload">Download</span></a>
+                <a class="btn" href="#install">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11"/><path d="M9 12h11"/><path d="M9 18h11"/><path d="M4 6h.01"/><path d="M4 12h.01"/><path d="M4 18h.01"/></svg>
+                    <span data-i18n="btnInstall">Installation</span></a>
+                <a class="btn" href="https://github.com/Ritze03/Teamspeak6Themes">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+                    GitHub</a>
+            </div>
         </div>
-        <nav class="lang-switch" aria-label="Language">
-            <button id="btn-en" onclick="setLang('en')">English</button>
-            <button id="btn-de" onclick="setLang('de')">Deutsch</button>
-        </nav>
+        <figure class="showcase" aria-hidden="true">
+            <div class="shots">
+                <img class="on" src="shots/graphite-vanilla.webp" alt="" data-name="Graphite · <b>Vanilla</b>">
+                <img src="shots/graphite-amoled.webp" alt="" data-name="Graphite · <b>Amoled</b>" loading="lazy">
+                <img src="shots/aurora-violet.webp" alt="" data-name="Aurora · <b>Violet</b>" loading="lazy">
+                <img src="shots/aurora-blue.webp" alt="" data-name="Aurora · <b>Blue</b>" loading="lazy">
+                <img src="shots/aurora-green.webp" alt="" data-name="Aurora · <b>Green</b>" loading="lazy">
+            </div>
+            <figcaption>Graphite · <b>Vanilla</b></figcaption>
+        </figure>
     </header>
+    <a class="cue" href="#preview"><span data-i18n="cue">Live preview</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+</div>
 
-    <!-- ===================== ENGLISH ===================== -->
-    <main data-lang="en">
-        <p>Two custom themes for the new TeamSpeak client, each with several
-        variants to pick from.</p>
+<section class="preview shell" id="preview" aria-label="Live preview">
+    <div class="picker" role="group" aria-label="Theme">
+        <div class="pgroup"><span class="group-label" data-i18n="stock">Stock</span>
+            <div class="seg">
+                <button class="opt" type="button" data-theme="" aria-pressed="false"><span class="bar" style="background:linear-gradient(90deg,#1b2333,#2b3a55 60%,#1588fa 60%)"></span><span class="name" data-i18n="original">Original</span></button>
+            </div></div>
+        <div class="pgroup four graphite"><span class="group-label">Graphite</span>
+            <div class="seg">
+                <button class="opt" type="button" data-theme="de.wurst.graphite/Vanilla" aria-pressed="false"><span class="bar" style="background:linear-gradient(90deg,#2b2b2b 60%,#1588fa 60%)"></span><span class="name">Vanilla</span></button>
+                <button class="opt" type="button" data-theme="de.wurst.graphite/Monochrome" aria-pressed="false"><span class="bar" style="background:linear-gradient(90deg,#2b2b2b 60%,#9a9a9a 60%)"></span><span class="name">Vanilla Monochrome</span></button>
+                <button class="opt" type="button" data-theme="de.wurst.graphite/Amoled" aria-pressed="false"><span class="bar" style="background:linear-gradient(90deg,#000 60%,#1588fa 60%)"></span><span class="name">Amoled</span></button>
+                <button class="opt" type="button" data-theme="de.wurst.graphite/AmoledMonochrome" aria-pressed="false"><span class="bar" style="background:linear-gradient(90deg,#000 60%,#9a9a9a 60%)"></span><span class="name">Amoled Monochrome</span></button>
+            </div></div>
+        <div class="pgroup four aurora"><span class="group-label">Aurora</span>
+            <div class="seg">
+                <button class="opt" type="button" data-theme="de.wurst.aurora/Violet" aria-pressed="false"><span class="bar" style="background:linear-gradient(90deg,#a78bfa,#22d3ee,#f472b6)"></span><span class="name">Violet</span></button>
+                <button class="opt" type="button" data-theme="de.wurst.aurora/Blue" aria-pressed="false"><span class="bar" style="background:linear-gradient(90deg,#1e3a8a,#2563eb,#22d3ee)"></span><span class="name">Blue</span></button>
+                <button class="opt" type="button" data-theme="de.wurst.aurora/Green" aria-pressed="false"><span class="bar" style="background:linear-gradient(90deg,#065f46,#10b981,#84cc16)"></span><span class="name">Green</span></button>
+                <button class="opt" type="button" data-theme="de.wurst.aurora/Monochrome" aria-pressed="false"><span class="bar" style="background:linear-gradient(90deg,#2a2a2e,#6b6b70,#b0b0b0)"></span><span class="name">Monochrome</span></button>
+            </div></div>
+    </div>
+    <div class="frame loading"><iframe id="frame" title="TeamSpeak client preview"></iframe></div>
+    <p class="note" data-i18n="previewNote">This is a snapshot of the real TeamSpeak 6 client with made-up names, and the themes load straight from this repository. Every variant also comes as a NoScroll version without scrollbars in the channel tree and chat, e.g. <code>Vanilla - NoScroll</code>.</p>
+</section>
 
-        <h2>Graphite — compact &amp; dark</h2>
-        <p>A clean dark-gray look with a compact server tree, so more channels
-        and users fit on your screen. Colored icons and talking indicators
-        stay just like you know them.</p>
-        <table>
-            <tr><th>Variant</th><th>Look</th></tr>
-            <tr><td>Compact - Vanilla</td><td>Gray backgrounds, normal TeamSpeak colors, blue buttons</td></tr>
-            <tr><td>Compact - Monochrome</td><td>Buttons and highlights turn gray too — only icons stay colored</td></tr>
-            <tr><td>Compact - Amoled</td><td>Pitch black, perfect for OLED screens</td></tr>
-            <tr><td>Compact NoScroll - …</td><td>The same three, but without scrollbars in the channel tree and chat</td></tr>
-        </table>
-
-        <div class="aurora">
-        <h2>Aurora — glassy &amp; glowing</h2>
-        <p>Frosted, semi-transparent panels floating over soft glowing lights,
-        with the same compact server tree as Graphite.</p>
-        <table>
-            <tr><th>Variant</th><th>Look</th></tr>
-            <tr><td>Aurora - Violet</td><td>Violet, cyan and pink glow</td></tr>
-            <tr><td>Aurora - Blue</td><td>Deep blue night</td></tr>
-            <tr><td>Aurora - Green</td><td>Emerald northern lights</td></tr>
-            <tr><td>Aurora - Monochrome</td><td>Silver glow, gray accents</td></tr>
-            <tr><td>Aurora NoScroll - …</td><td>The same four, without scrollbars in the channel tree and chat</td></tr>
-        </table>
-        </div>
-
-        <h2>How to install</h2>
-        <ol>
-            <li>Download the themes and unpack the ZIP somewhere.<br>
-                <a class="dl-btn" href="https://github.com/Ritze03/Teamspeak6Themes/archive/refs/heads/master.zip">⬇ Download themes (ZIP)</a></li>
-            <li>Open TeamSpeak and go to <strong>Settings → Appearance</strong>.</li>
-            <li>Turn on the <strong>User Theme</strong> toggle.</li>
-            <li>Click the small <strong>folder icon</strong> next to the theme
-                cards. TeamSpeak opens its <strong>extensions</strong> folder
-                for you.
-                <ul>
-                    <li>Linux: usually <code>~/.config/TeamSpeak/Default/extensions</code></li>
-                    <li>Windows: usually <code>%APPDATA%\TeamSpeak\Default\extensions</code></li>
-                </ul>
-            </li>
-            <li>Move (or copy) the folders <strong><code>de.wurst.graphite</code></strong>
-                and <strong><code>de.wurst.aurora</code></strong> from the unpacked
-                download into that extensions folder. You can also install just
-                one of them.</li>
-            <li>Back in TeamSpeak, click the small <strong>refresh icon</strong>
-                (circular arrow) next to the folder icon — the new themes appear
-                as cards.</li>
-            <li>Click the theme you like.</li>
-            <li><strong>Restart TeamSpeak</strong> — the channel tree only
-                applies its sizing properly after a restart. Done!</li>
+<div class="shell narrow">
+    <section class="block" id="install">
+        <h2 data-i18n="installTitle">Installation</h2>
+        <p class="section-lede" data-i18n="installLede">Takes about two minutes. No installer, you just copy two folders.</p>
+        <ol class="steps">
+            <li><div><b data-i18n="s1">Download the themes and unpack the ZIP.</b>
+                <div><a class="btn primary" href="https://github.com/Ritze03/Teamspeak6Themes/archive/refs/heads/master.zip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                    <span data-i18n="btnZip">Download ZIP</span></a></div></div></li>
+            <li><div><b data-i18n="s2">In TeamSpeak, open Settings → Appearance and turn on User Theme.</b></div></li>
+            <li><div><b data-i18n="s3">Click the small folder icon next to the theme cards.</b>
+                <p data-i18n="s3d">TeamSpeak opens its <b>extensions</b> folder for you. Usually:</p>
+                <div class="paths">
+                    <span>Linux&nbsp; <code>~/.config/TeamSpeak/Default/extensions</code></span>
+                    <span>Windows&nbsp; <code>%APPDATA%\TeamSpeak\Default\extensions</code></span>
+                </div></div></li>
+            <li><div><b data-i18n="s4">Copy the folders <code>de.wurst.graphite</code> and <code>de.wurst.aurora</code> into it.</b>
+                <p data-i18n="s4d">You'll find them inside the unpacked download. Installing only one of them works too.</p></div></li>
+            <li><div><b data-i18n="s5">In TeamSpeak, click the refresh icon (circular arrow) next to the folder icon.</b>
+                <p data-i18n="s5d">The new themes appear as cards. Click the one you like.</p></div></li>
+            <li><div><b data-i18n="s6">Restart TeamSpeak.</b>
+                <p data-i18n="s6d">The channel tree only picks up the new row sizes after a restart. Done!</p></div></li>
         </ol>
 
-        <h2>Good to know</h2>
-        <ul>
-            <li>The themes are designed for the <strong>"Compact"</strong> setting
-                under <strong>Settings → Appearance → Tree Style</strong>, but they
-                also work with "Detailed".</li>
-            <li class="note"><strong>Restart TeamSpeak after activating or switching
-                a theme</strong> — the channel tree view only updates its sizing
-                properly after a restart. Until then the channel list may look
-                squished or oddly spaced.</li>
-            <li>Updating: replace the two folders with new versions, then press
-                the refresh icon (or restart TeamSpeak).</li>
-            <li>Uninstalling: delete the folders from the extensions folder.</li>
-        </ul>
-    </main>
-
-    <!-- ===================== DEUTSCH ===================== -->
-    <main data-lang="de">
-        <p>Zwei individuelle Themes für den neuen TeamSpeak-Client, jeweils mit
-        mehreren Varianten zur Auswahl.</p>
-
-        <h2>Graphite — kompakt &amp; dunkel</h2>
-        <p>Ein aufgeräumter dunkelgrauer Look mit kompaktem Channel-Baum, damit
-        mehr Channels und Nutzer auf den Bildschirm passen. Farbige Icons und
-        Sprech-Anzeigen bleiben so, wie man sie kennt.</p>
-        <table>
-            <tr><th>Variante</th><th>Aussehen</th></tr>
-            <tr><td>Compact - Vanilla</td><td>Graue Hintergründe, normale TeamSpeak-Farben, blaue Buttons</td></tr>
-            <tr><td>Compact - Monochrome</td><td>Buttons und Hervorhebungen werden ebenfalls grau — nur Icons bleiben farbig</td></tr>
-            <tr><td>Compact - Amoled</td><td>Tiefschwarz, perfekt für OLED-Bildschirme</td></tr>
-            <tr><td>Compact NoScroll - …</td><td>Dieselben drei, aber ohne Scrollbalken im Channel-Baum und Chat</td></tr>
-        </table>
-
-        <div class="aurora">
-        <h2>Aurora — glasig &amp; leuchtend</h2>
-        <p>Milchglas-Panels, die über sanft leuchtenden Lichtern schweben — mit
-        demselben kompakten Channel-Baum wie Graphite.</p>
-        <table>
-            <tr><th>Variante</th><th>Aussehen</th></tr>
-            <tr><td>Aurora - Violet</td><td>Violettes, cyanes und pinkes Leuchten</td></tr>
-            <tr><td>Aurora - Blue</td><td>Tiefblaue Nacht</td></tr>
-            <tr><td>Aurora - Green</td><td>Smaragdgrüne Polarlichter</td></tr>
-            <tr><td>Aurora - Monochrome</td><td>Silbernes Leuchten, graue Akzente</td></tr>
-            <tr><td>Aurora NoScroll - …</td><td>Dieselben vier, ohne Scrollbalken im Channel-Baum und Chat</td></tr>
-        </table>
+        <div class="callout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+            <p data-i18n="restart"><b>Restart once when you switch to these themes from TeamSpeak's own look or another theme</b>, and again when you switch back. Until then the channel list can look squished or oddly spaced. Switching between Graphite and Aurora variants works right away, since they all share the same sizing.</p>
         </div>
 
-        <h2>Installation</h2>
-        <ol>
-            <li>Themes herunterladen und das ZIP irgendwo entpacken.<br>
-                <a class="dl-btn" href="https://github.com/Ritze03/Teamspeak6Themes/archive/refs/heads/master.zip">⬇ Themes herunterladen (ZIP)</a></li>
-            <li>TeamSpeak öffnen und zu <strong>Settings → Appearance</strong>
-                (Einstellungen → Aussehen) gehen.</li>
-            <li>Den Schalter <strong>User Theme</strong> aktivieren.</li>
-            <li>Auf das kleine <strong>Ordner-Symbol</strong> neben den
-                Theme-Karten klicken. TeamSpeak öffnet damit seinen
-                <strong>extensions</strong>-Ordner.
-                <ul>
-                    <li>Linux: meist <code>~/.config/TeamSpeak/Default/extensions</code></li>
-                    <li>Windows: meist <code>%APPDATA%\TeamSpeak\Default\extensions</code></li>
-                </ul>
-            </li>
-            <li>Die Ordner <strong><code>de.wurst.graphite</code></strong> und
-                <strong><code>de.wurst.aurora</code></strong> aus dem entpackten
-                Download in diesen extensions-Ordner verschieben (oder kopieren).
-                Es geht auch nur einer von beiden.</li>
-            <li>Zurück in TeamSpeak auf das kleine
-                <strong>Aktualisieren-Symbol</strong> (Kreispfeil) neben dem
-                Ordner-Symbol klicken — die neuen Themes erscheinen als
-                Karten.</li>
-            <li>Das gewünschte Theme anklicken.</li>
-            <li><strong>TeamSpeak neu starten</strong> — der Channel-Baum
-                übernimmt seine Größen erst nach einem Neustart richtig.
-                Fertig!</li>
-        </ol>
-
-        <h2>Gut zu wissen</h2>
-        <ul>
-            <li>Die Themes sind für die Einstellung <strong>„Compact“</strong>
-                unter <strong>Settings → Appearance → Tree Style</strong>
-                gestaltet, funktionieren aber auch mit „Detailed“.</li>
-            <li class="note"><strong>Nach dem Aktivieren oder Wechseln eines Themes
-                TeamSpeak neu starten</strong> — der Channel-Baum übernimmt seine
-                Größen erst nach einem Neustart richtig. Bis dahin kann die
-                Channel-Liste gestaucht oder seltsam verteilt aussehen.</li>
-            <li>Aktualisieren: die beiden Ordner durch neue Versionen ersetzen
-                und das Aktualisieren-Symbol drücken (oder TeamSpeak neu
-                starten).</li>
-            <li>Deinstallieren: die Ordner aus dem extensions-Ordner
-                löschen.</li>
-        </ul>
-    </main>
+        <div class="faq">
+            <div><h3 data-i18n="f1h">Tree style</h3><p data-i18n="f1">Made for <b>Compact</b> under Settings → Appearance → Tree Style. <b>Detailed</b> works too.</p></div>
+            <div><h3 data-i18n="f2h">Updating</h3><p data-i18n="f2">Replace both folders with the new versions, then press refresh or restart TeamSpeak. If TeamSpeak switched to another theme, just pick yours again.</p></div>
+            <div><h3 data-i18n="f3h">Uninstalling</h3><p data-i18n="f3">Delete the folders from the extensions folder.</p></div>
+        </div>
+    </section>
 
     <footer>
-        <span data-lang="en">Graphite &amp; Aurora — themes for the TeamSpeak 6 client.</span>
-        <span data-lang="de">Graphite &amp; Aurora — Themes für den TeamSpeak-6-Client.</span>
+        <span data-i18n="footer">Graphite &amp; Aurora, themes for the TeamSpeak 6 client.</span>
+        <a href="https://github.com/Ritze03/Teamspeak6Themes">github.com/Ritze03/Teamspeak6Themes</a>
     </footer>
 </div>
 
 <script>
+// ---- language --------------------------------------------------------------
+const DE = {
+    eyebrow: "Graphite &amp; Aurora · für den TeamSpeak-6-Client",
+    title: "Kompakte TeamSpeak&#8209;6&#8209;Themes im Gefühl von <em>TeamSpeak&nbsp;3</em>.",
+    lede: "Schmale Channel-Zeilen, kleine Icons und kein verschwendeter Platz, damit der ganze Server wieder auf den Bildschirm passt. Zwei Themes, acht Farbvarianten, kostenlos.",
+    btnPreview: "Vorschau", btnDownload: "Download", btnInstall: "Installation",
+    cue: "Live-Vorschau",
+    original: "Original", stock: "Standard",
+    previewNote: "Das ist ein Abbild des echten TeamSpeak-6-Clients mit ausgedachten Namen, die Themes werden direkt aus diesem Repository geladen. Jede Variante gibt es auch als NoScroll-Version ohne Scrollbalken im Channel-Baum und Chat, z.&nbsp;B. <code>Vanilla - NoScroll</code>.",
+    installTitle: "Installation", installLede: "Dauert etwa zwei Minuten. Kein Installer, du kopierst nur zwei Ordner.",
+    s1: "Themes herunterladen und das ZIP entpacken.", btnZip: "ZIP herunterladen",
+    s2: "In TeamSpeak Settings → Appearance (Einstellungen → Aussehen) öffnen und User Theme aktivieren.",
+    s3: "Auf das kleine Ordner-Symbol neben den Theme-Karten klicken.",
+    s3d: "TeamSpeak öffnet damit seinen <b>extensions</b>-Ordner. Meistens:",
+    s4: "Die Ordner <code>de.wurst.graphite</code> und <code>de.wurst.aurora</code> dort hineinkopieren.",
+    s4d: "Du findest sie im entpackten Download. Es geht auch nur einer von beiden.",
+    s5: "In TeamSpeak auf das Aktualisieren-Symbol (Kreispfeil) neben dem Ordner-Symbol klicken.",
+    s5d: "Die neuen Themes erscheinen als Karten. Klick das an, das dir gefällt.",
+    s6: "TeamSpeak neu starten.",
+    s6d: "Der Channel-Baum übernimmt die neuen Zeilengrößen erst nach einem Neustart. Fertig!",
+    restart: "<b>Einmal neu starten, wenn du vom normalen TeamSpeak-Look oder einem anderen Theme zu diesen Themes wechselst</b>, und wieder beim Zurückwechseln. Bis dahin kann die Channel-Liste gestaucht oder seltsam verteilt aussehen. Zwischen Graphite- und Aurora-Varianten kannst du ohne Neustart wechseln, sie haben alle dieselbe Größe.",
+    f1h: "Baum-Stil", f1: "Gemacht für <b>Compact</b> unter Settings → Appearance → Tree Style. <b>Detailed</b> funktioniert auch.",
+    f2h: "Aktualisieren", f2: "Beide Ordner durch die neuen Versionen ersetzen, dann Aktualisieren drücken oder TeamSpeak neu starten. Falls TeamSpeak ein anderes Theme gewählt hat, wähl deins einfach neu aus.",
+    f3h: "Deinstallieren", f3: "Die Ordner aus dem extensions-Ordner löschen.",
+    footer: "Graphite &amp; Aurora, Themes für den TeamSpeak-6-Client."
+};
+const EN = {};
+document.querySelectorAll("[data-i18n]").forEach(el => { EN[el.dataset.i18n] ??= el.innerHTML; });
 function setLang(lang) {
-    document.querySelectorAll("[data-lang]").forEach(el => {
-        el.style.display = el.dataset.lang === lang ? (el.tagName === "SPAN" ? "inline" : "block") : "none";
-    });
-    document.getElementById("btn-en").classList.toggle("active", lang === "en");
-    document.getElementById("btn-de").classList.toggle("active", lang === "de");
+    const dict = lang === "de" ? DE : EN;
+    document.querySelectorAll("[data-i18n]").forEach(el => { const v = dict[el.dataset.i18n]; if (v != null) el.innerHTML = v; });
     document.documentElement.lang = lang;
+    document.getElementById("btn-en").setAttribute("aria-pressed", lang === "en");
+    document.getElementById("btn-de").setAttribute("aria-pressed", lang === "de");
     try { localStorage.setItem("lang", lang); } catch (e) {}
 }
+document.getElementById("btn-en").onclick = () => setLang("en");
+document.getElementById("btn-de").onclick = () => setLang("de");
 let lang = null;
 try { lang = localStorage.getItem("lang"); } catch (e) {}
-if (lang !== "en" && lang !== "de") {
-    lang = (navigator.language || "en").toLowerCase().startsWith("de") ? "de" : "en";
-}
+if (lang !== "en" && lang !== "de") lang = (navigator.language || "en").toLowerCase().startsWith("de") ? "de" : "en";
 setLang(lang);
+
+// ---- live preview ------------------------------------------------------------
+const frame = document.getElementById("frame");
+const fit = () => frame.style.transform = "scale(" + frame.parentElement.clientWidth / 1896 + ")";
+new ResizeObserver(fit).observe(frame.parentElement);
+// GitHub Pages only serves docs/, so the real theme files come from the repo via jsDelivr
+const THEMES = location.hostname.endsWith("github.io")
+    ? "https://cdn.jsdelivr.net/gh/Ritze03/Teamspeak6Themes@master/"
+    : new URL("themes/", location.href).href;
+let theme = "de.wurst.graphite/Vanilla";   // opens on Graphite
+let pending = 0;   // ignores loads that a newer click has superseded
+const reveal = n => { if (n === pending) frame.parentElement.classList.remove("loading"); };
+// Load the theme into a second <link> and drop the old one only once the new one
+// (including its @imports) has loaded, so switching never shows an unthemed frame.
+function setStyle(href, n) {
+    const doc = frame.contentDocument;
+    const old = doc?.getElementById("userStyle");
+    if (!old) return reveal(n);
+    const done = () => doc.fonts.ready.then(() => reveal(n));
+    if (!href) { old.removeAttribute("href"); return done(); }
+    if (old.getAttribute("href") === href) return done();
+    const next = doc.createElement("link");
+    next.rel = "stylesheet";
+    next.onload = next.onerror = () => { old.remove(); next.id = "userStyle"; done(); };
+    next.href = href;
+    old.after(next);
+}
+function applyTheme() {
+    const n = ++pending;
+    const page = theme ? "preview/themed.html" : "preview/original.html";
+    const href = theme ? THEMES + theme + ".css" : "";
+    if (!frame.src.endsWith(page)) {
+        frame.parentElement.classList.add("loading");
+        frame.onload = () => setStyle(href, n);
+        frame.src = page;
+    } else setStyle(href, n);
+    document.querySelectorAll(".opt").forEach(b => b.setAttribute("aria-pressed", b.dataset.theme === theme));
+}
+document.querySelectorAll(".opt").forEach(b => b.onclick = () => { theme = b.dataset.theme; applyTheme(); });
+applyTheme();
+
+// ---- hero showcase: cycle the rendered variant previews -----------------------
+(() => {
+    const fig = document.querySelector(".showcase");
+    const imgs = [...fig.querySelectorAll("img")];
+    const cap = fig.querySelector("figcaption");
+    let i = 0;
+    setInterval(() => {
+        if (document.hidden || getComputedStyle(fig).display === "none") return;
+        imgs.forEach(img => img.classList.remove("prev"));
+        imgs[i].classList.replace("on", "prev");
+        i = (i + 1) % imgs.length;
+        imgs[i].classList.add("on");
+        cap.innerHTML = imgs[i].dataset.name;
+    }, 3200);
+})();
 </script>
 </body>
 </html>

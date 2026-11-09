@@ -1,9 +1,22 @@
+<p align="center"><img src="docs/icon.svg" width="96" alt=""></p>
+
 # TeamSpeak 6 Themes
 
-🌐 **[Read this page as a website — English / Deutsch](https://ritze03.github.io/Teamspeak6Themes/)**
+**Compact TeamSpeak 6 themes with the feel of TeamSpeak 3.** Tight channel
+rows, small icons and no wasted space, so your whole server fits on screen
+again. Two themes, eight color variants.
 
-Two custom themes for the new TeamSpeak client, each with several variants
-to pick from.
+🌐 **[Website with a live preview of every variant (English / Deutsch)](https://ritze03.github.io/Teamspeak6Themes/)**
+· **[⬇ Download (ZIP)](https://github.com/Ritze03/Teamspeak6Themes/archive/refs/heads/master.zip)**
+· **[How to install](#how-to-install)**
+
+<p align="center">
+  <img src="de.wurst.graphite/Thumbnail.png" width="300" alt="Graphite variants">
+  <img src="de.wurst.aurora/Thumbnail.png" width="300" alt="Aurora variants">
+</p>
+
+Channel tree sizing: 28px rows, 22px icons, 13px font, 2px gap between
+channels.
 
 ## Graphite — compact & dark
 
@@ -13,10 +26,11 @@ like you know them.
 
 | Variant | Look |
 |---|---|
-| Compact - Vanilla | Gray backgrounds, normal TeamSpeak colors, blue buttons |
-| Compact - Monochrome | Buttons and highlights turn gray too — only icons stay colored |
-| Compact - Amoled | Pitch black, perfect for OLED screens |
-| Compact NoScroll - … | The same three, but without scrollbars in the channel tree and chat |
+| Vanilla | Gray backgrounds, normal TeamSpeak colors, blue buttons |
+| Vanilla Monochrome | Buttons and highlights turn gray too — only icons stay colored |
+| Amoled | Pitch black, perfect for OLED screens |
+| Amoled Monochrome | Pitch black with gray accents, like Vanilla Monochrome |
+| … - NoScroll | The same four, but without scrollbars in the channel tree and chat |
 
 ## Aurora — glassy & glowing
 
@@ -25,11 +39,11 @@ the same compact server tree as Graphite.
 
 | Variant | Look |
 |---|---|
-| Aurora - Violet | Violet, cyan and pink glow |
-| Aurora - Blue | Deep blue night |
-| Aurora - Green | Emerald northern lights |
-| Aurora - Monochrome | Silver glow, gray accents |
-| Aurora NoScroll - … | The same four, without scrollbars in the channel tree and chat |
+| Violet | Violet, cyan and pink glow |
+| Blue | Deep blue night |
+| Green | Emerald northern lights |
+| Monochrome | Silver glow, gray accents |
+| … - NoScroll | The same four, without scrollbars in the channel tree and chat |
 
 ## How to install
 
@@ -55,9 +69,14 @@ the same compact server tree as Graphite.
 - The themes are designed for the **"Compact"** setting under
   **Settings → Appearance → Tree Style**, but they also work with
   "Detailed".
-- **Restart TeamSpeak after activating or switching a theme** — the channel
-  tree view only updates its sizing properly after a restart. Until then
-  the channel list may look squished or oddly spaced.
+- **Restart TeamSpeak once when you switch to these themes** from
+  TeamSpeak's own look or another theme (and again when you switch back).
+  The channel tree only updates its sizing after a restart; until then the
+  channel list may look squished or oddly spaced. Switching between
+  Graphite and Aurora variants works right away, since they all share the
+  same sizing.
 - Updating: replace the two folders with new versions, then press the
-  refresh icon (or restart TeamSpeak).
+  refresh icon (or restart TeamSpeak). If a new version renamed or added
+  variants, TeamSpeak may switch to another theme or turn User Theme off;
+  just pick yours again.
 - Uninstalling: delete the folders from the extensions folder.

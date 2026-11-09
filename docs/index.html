@@ -395,32 +395,42 @@ const THEMES = location.hostname.endsWith("github.io")
     ? "https://cdn.jsdelivr.net/gh/Ritze03/Teamspeak6Themes@master/"
     : new URL("themes/", location.href).href;
 let theme = "de.wurst.graphite/Vanilla";   // opens on Graphite
-let pending = 0;   // ignores loads that a newer click has superseded
+let pending = 0;      // bumped on every click; only the newest click may finish
+let pageLoading = false;
 const reveal = n => { if (n === pending) frame.parentElement.classList.remove("loading"); };
-// Load the theme into a second <link> and drop the old one only once the new one
-// (including its @imports) has loaded, so switching never shows an unthemed frame.
-function setStyle(href, n) {
+// The empty #userStyle in themed.html only marks the client's position. Each switch adds
+// a new <link data-user> after it; the newest one, once loaded (incl. @imports), removes
+// all others. Links superseded by a newer click remove themselves, so rapid clicking can
+// never stack two themes.
+function setStyle(n) {
+    if (n !== pending || pageLoading) return;
     const doc = frame.contentDocument;
-    const old = doc?.getElementById("userStyle");
-    if (!old) return reveal(n);
+    const anchor = doc?.getElementById("userStyle");
     const done = () => doc.fonts.ready.then(() => reveal(n));
-    if (!href) { old.removeAttribute("href"); return done(); }
-    if (old.getAttribute("href") === href) return done();
+    if (!anchor || !theme) return done();          // original.html has no user style
+    const href = THEMES + theme + ".css";
+    const links = [...doc.querySelectorAll("link[data-user]")];
+    if (links.length === 1 && links[0].getAttribute("href") === href) return done();
     const next = doc.createElement("link");
     next.rel = "stylesheet";
-    next.onload = next.onerror = () => { old.remove(); next.id = "userStyle"; done(); };
+    next.dataset.user = "";
+    next.onload = next.onerror = () => {
+        if (n !== pending) return next.remove();
+        doc.querySelectorAll("link[data-user]").forEach(l => l !== next && l.remove());
+        done();
+    };
     next.href = href;
-    old.after(next);
+    anchor.after(next);
 }
 function applyTheme() {
     const n = ++pending;
     const page = theme ? "preview/themed.html" : "preview/original.html";
-    const href = theme ? THEMES + theme + ".css" : "";
     if (!frame.src.endsWith(page)) {
         frame.parentElement.classList.add("loading");
-        frame.onload = () => setStyle(href, n);
+        pageLoading = true;
+        frame.onload = () => { pageLoading = false; setStyle(pending); };   // whatever is selected by now
         frame.src = page;
-    } else setStyle(href, n);
+    } else setStyle(n);
     document.querySelectorAll(".opt").forEach(b => b.setAttribute("aria-pressed", b.dataset.theme === theme));
 }
 document.querySelectorAll(".opt").forEach(b => b.onclick = () => { theme = b.dataset.theme; applyTheme(); });
